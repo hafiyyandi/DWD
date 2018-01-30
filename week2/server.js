@@ -1,14 +1,10 @@
-var express = require('express');
-var app = express();
+//app.use(express.static('public'));
 
-app.use(express.static('public'));
+var express = require('express')
+var app = express()
 
 app.get('/', function (req, res) {
-  res.send('AAAAAAAAA')
-})
-
-app.get('/somethingelse', function (req, res) {
-  res.send('HEYYYYY')
+  res.send('Hello World!')
 })
 
 app.listen(3000, function () {
