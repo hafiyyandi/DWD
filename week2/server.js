@@ -18,7 +18,7 @@ app.get('/formpost', function (req, res){
 });
 
 app.get('/display', function(req, res){
-	var htmlout = "<html><body";
+	var htmlout = "<html><body>";
 	for (var i = 0; i<submissions.length; i++){
 		htmlout = htmlout + submissions[i] + "<br>";
 	}
