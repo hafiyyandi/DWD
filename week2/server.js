@@ -3,7 +3,7 @@ var app = express();
 
 var count=0;
 
-var submission = [];
+var submissions = [];
 
 app.use(express.static('public'));
 
@@ -13,14 +13,14 @@ app.get('/count', function (req, res) {
 });
 
 app.get('/formpost', function (req, res){
-	submission.push(req.query.textfield);
+	submissions.push(req.query.textfield);
 	res.redirect('/display');
 });
 
 app.get('/display', function(req, res){
 	var htmlout = "<html><body";
-	for (var i = 0; i<submission.length; i++){
-		htmlout = htmlout + submssions[i] + "<br>";
+	for (var i = 0; i<submissions.length; i++){
+		htmlout = htmlout + submissions[i] + "<br>";
 	}
 	var htmlout = htmlout + "</body></html>";
 	res.send(htmlout);
