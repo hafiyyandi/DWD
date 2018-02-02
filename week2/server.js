@@ -5,8 +5,12 @@ var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({extended: true}); //for parsing form data
 app.use(urlencodedParser);
 
-var count=0;
+// Database to store data, don't forget autoload: true
+var Datastore = require('nedb');
+var db = new Datastore({filename: "data.db", autoload: true});
 
+
+var count=0;
 var submissions = [];
 
 app.use(express.static('public'));
@@ -23,7 +27,11 @@ app.get('/formpost', function (req, res){
 
 app.post('/processit', function(req, res){
 	var textvalue = req.body.textfield;
-	res.send("You submitted: "+textvalue);
+	db.insert(textvalue, function(err, newDocs){
+		console.log("err: " + err);
+		console.log("newDocs: " + newDocs);
+	});
+	//res.send("You submitted: "+textvalue);
 });
 
 app.get('/display', function(req, res){
