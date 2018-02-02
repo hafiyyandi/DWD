@@ -17,6 +17,11 @@ app.get('/formpost', function (req, res){
 	res.redirect('/display');
 });
 
+app.post('/processit', function(req, res){
+	var textvalue = req.body.textfield;
+	res.send("You submitted: "+textvalue);
+});
+
 app.get('/display', function(req, res){
 	var htmlout = "<html><body>";
 	for (var i = 0; i<submissions.length; i++){
