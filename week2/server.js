@@ -9,9 +9,9 @@ app.use(urlencodedParser);
 var Datastore = require('nedb');
 var db = new Datastore({filename: "data.db", autoload: true});
 
-
 var count=0;
 var submissions = [];
+var searchterms =[];
 
 app.use(express.static('public'));
 
@@ -26,8 +26,25 @@ app.get('/formpost', function (req, res){
 });
 
 app.post('/processit', function(req, res){
+	searchterms[0] = req.body.firstword;
+	searchterms[1] = req.body.secondword;
+	searchterms[2] = req.body.thirdword;
+	//console.log(textvalue);
+	for (var i=0; i<searchterms.length; i++){
+		db.insert(searchterms[i], function(err, newDocs){
+			console.log(i);
+			console.log("err: " + err);
+			console.log("newDocs: " + newDocs);
+		});
+	}
+	
+});
+
+app.post('/processgif', function(req, res){
 	var textvalue = req.body.textfield;
+	//console.log(textvalue);
 	db.insert(textvalue, function(err, newDocs){
+		//console.log("HEY");
 		console.log("err: " + err);
 		console.log("newDocs: " + newDocs);
 	});
