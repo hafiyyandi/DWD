@@ -25,7 +25,7 @@ app.get('/formpost', function (req, res){
 	res.redirect('/display');
 });
 
-app.post('/processgit', function(req, res){
+app.post('/processgif', function(req, res){
 	searchterms[0] = req.body.firstword;
 	searchterms[1] = req.body.secondword;
 	searchterms[2] = req.body.thirdword;
