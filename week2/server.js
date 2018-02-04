@@ -77,7 +77,7 @@ app.get('/processingDB', function(req, res){
 
 
 app.get('/templateprocessing', function(req,res){
-	var random = Math.floor(Math.random()*2);
+	var random = Math.floor(Math.random()*3);
 	console.log(random);
 	res.render('template.ejs',lastData);
 });
