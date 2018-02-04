@@ -35,8 +35,10 @@ app.post('/processgif', function(req, res){
 	
 	db.insert(inputObject, function(err, newDocs){
 		console.log("err: " + err);
-		console.log("newDocs: " + newDocs);
+		console.log("newDocs: " + newDocs.data);
 	});
+
+	res.redirect('/result.html');
 	
 });
 
