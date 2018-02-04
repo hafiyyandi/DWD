@@ -49,13 +49,15 @@ app.post('/savingintoDB', function(req, res){
 
 app.get('/processingDB', function(req, res){
 	db.find({}, function(err, docs) {
-		var lastIndex = 1;
+		var biggestIndex = 1;
+		var lastobjectIndex = 0;
 	
 		// Loop through the results, send each one as if it were a new chat message
 		for (var i = 0; i < docs.length; i++) {
 			//console.log(docs[i]);
-			if (docs[i].index > lastIndex){
-				lastIndex = i;
+			if (docs[i].index >= biggestIndex){
+				biggestIndex = docs[i].index;
+				lastobjectIndex = i;
 			}
 			//console.log(i);
 			//console.log(docs[i]);
@@ -65,9 +67,10 @@ app.get('/processingDB', function(req, res){
 			// }
 		}
 		console.log("count: "+count);
-		console.log("last: "+lastIndex);
-		console.log(docs[lastIndex]);
-		lastData = docs[lastIndex];
+		console.log("biggest: "+biggestIndex);
+		console.log(docs[lastobjectIndex]);
+		lastData = docs[lastobjectIndex];
+		
 		res.redirect('/templateprocessing');
 	});
 });
