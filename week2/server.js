@@ -41,7 +41,7 @@ app.post('/savingintoDB', function(req, res){
 	
 	db.insert(inputObject, function(err, newDocs){
 		console.log("err: " + err);
-		console.log("newDocs: " + newDocs.index + " - "+newDocs.data);
+		console.log("newDocs: " + newDocs.index + " | "+newDocs.data);
 		res.redirect('/processingDB');
 	});
 	
@@ -49,17 +49,25 @@ app.post('/savingintoDB', function(req, res){
 
 app.get('/processingDB', function(req, res){
 	db.find({}, function(err, docs) {
-	lastData = docs[docs.length -1];
+		var lastIndex = 1;
+	
 		// Loop through the results, send each one as if it were a new chat message
 		for (var i = 0; i < docs.length; i++) {
+			console.log(docs[i]);
+			if (docs[i].index > lastIndex){
+				lastIndex = i;
+			}
 			//console.log(i);
 			//console.log(docs[i]);
-			for (var j =0; j<docs[i].data.length;j++){
-				console.log(i+ ": "+docs[i].data[j]);
-				//storedData.push(docs[i][j]);
-			}
+			// for (var j =0; j<docs[i].data.length;j++){
+			// 	console.log(i+ ": "+docs[i].data[j]);
+			// 	//storedData.push(docs[i][j]);
+			// }
 		}
-	res.redirect('/templateprocessing');
+		console.log(lastIndex);
+		console.log(docs[lastIndex]);
+		lastData = docs[lastIndex];
+		res.redirect('/templateprocessing');
 	});
 });
 
