@@ -38,7 +38,19 @@ app.post('/processgif', function(req, res){
 		console.log("newDocs: " + newDocs.data);
 	});
 
-	res.redirect('/result.html');
+	var storedData =[];
+
+	db.find({}, function(err, docs){
+	    console.log("err: " + err);
+	    for (var i=0; i<docs.length; i++){
+	      for (var j=0; docs[i].length;j++){
+	        console.log("search term: "+ docs[i][j]);
+	        storedData.push(docs[i][j]);
+	      }
+	    }
+	});
+	console.log("stored: " + storedData);
+	//res.redirect('/result.html');
 	
 });
 
