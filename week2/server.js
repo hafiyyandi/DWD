@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 
+//required for POST method
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({extended: true}); //for parsing form data
 app.use(urlencodedParser);
@@ -8,6 +9,9 @@ app.use(urlencodedParser);
 // Database to store data, don't forget autoload: true
 var Datastore = require('nedb');
 var db = new Datastore({filename: "data.db", autoload: true});
+
+//Templates
+app.set('view engine', 'ejs');
 
 var count=0;
 var submissions = [];
@@ -38,15 +42,10 @@ app.post('/savingintoDB', function(req, res){
 		console.log("newDocs: " + newDocs.data);
 		res.redirect('/processingDB');
 	});
-
-	
-	
-	//res.redirect('/result.html');
 	
 });
 
 app.get('/processingDB', function(req, res){
-	var storedData =[];
 	db.find({}, function(err, docs) {
 		// Loop through the results, send each one as if it were a new chat message
 		for (var i = 0; i < docs.length; i++) {
@@ -57,8 +56,11 @@ app.get('/processingDB', function(req, res){
 				//storedData.push(docs[i][j]);
 			}
 		}
+	var lastData = docs[docs.length -1];
 	});
-	//console.log("stored: "+storedData);
+	
+	console.log(lastData);
+	res.render('template.ejs',lastData);
 });
 	
 
