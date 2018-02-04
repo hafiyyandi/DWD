@@ -45,18 +45,18 @@ app.post('/savingintoDB', function(req, res){
 	
 });
 
-app.get('/processingDB', function(req, res)){
-	var storedData =[];
-	db.find({}, function(err, docs) {
-		// Loop through the results, send each one as if it were a new chat message
-		for (var i = 0; i < docs.length; i++) {
-			for (var j =0; j<docs[i].length;j++){
-				storedData.push(docs[i][j]);
-			}
-		}
-	});
-	console.log("stored: "+storedData);
-});
+// app.get('/processingDB', function(req, res)){
+// 	var storedData =[];
+// 	db.find({}, function(err, docs) {
+// 		// Loop through the results, send each one as if it were a new chat message
+// 		for (var i = 0; i < docs.length; i++) {
+// 			for (var j =0; j<docs[i].length;j++){
+// 				storedData.push(docs[i][j]);
+// 			}
+// 		}
+// 	});
+// 	console.log("stored: "+storedData);
+// });
 	
 
 
