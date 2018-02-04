@@ -25,7 +25,7 @@ app.get('/formpost', function (req, res){
 	res.redirect('/display');
 });
 
-app.post('/processgif', function(req, res){
+app.post('/savingintoDB', function(req, res){
 	searchterms[0] = req.body.firstword;
 	searchterms[1] = req.body.secondword;
 	searchterms[2] = req.body.thirdword;
@@ -36,23 +36,29 @@ app.post('/processgif', function(req, res){
 	db.insert(inputObject, function(err, newDocs){
 		console.log("err: " + err);
 		console.log("newDocs: " + newDocs.data);
+		res.redirect('/processingDB');
 	});
 
-	var storedData =[];
-
-	db.find({}, function(err, docs){
-	    console.log("err: " + err);
-	    for (var i=0; i<docs.length; i++){
-	      for (var j=0; docs[i].length;j++){
-	        console.log("search term: "+ docs[i][j]);
-	        storedData.push(docs[i][j]);
-	      }
-	    }
-	});
-	console.log("stored: " + storedData);
+	
+	
 	//res.redirect('/result.html');
 	
 });
+
+app.get('/processingDB', function(req, res)){
+	var storedData =[];
+	db.find({}, function(err, docs) {
+		// Loop through the results, send each one as if it were a new chat message
+		for (var i = 0; i < docs.length; i++) {
+			for (var j =0; j<docs[i].length;j++){
+				storedData.push(docs[i][j]);
+			}
+		}
+	});
+	console.log("stored: "+storedData);
+});
+	
+
 
 app.post('/processit', function(req, res){
 	var textvalue = req.body.textfield;
