@@ -29,14 +29,14 @@ app.post('/processgif', function(req, res){
 	searchterms[0] = req.body.firstword;
 	searchterms[1] = req.body.secondword;
 	searchterms[2] = req.body.thirdword;
-	//console.log(textvalue);
-	for (var i=0; i<searchterms.length; i++){
-		db.insert(searchterms[i], function(err, newDocs){
-			console.log(i);
-			console.log("err: " + err);
-			console.log("newDocs: " + newDocs);
-		});
-	}
+
+	var inputObject = {data: [searchterms[0], searchterms[1], searchterms[2]]};
+	console.log(inputObject.data);
+	
+	db.insert(inputObject, function(err, newDocs){
+		console.log("err: " + err);
+		console.log("newDocs: " + newDocs);
+	});
 	
 });
 
