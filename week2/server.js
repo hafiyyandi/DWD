@@ -36,7 +36,6 @@ app.post('/savingintoDB', function(req, res){
 	//searchterms[2] = req.body.thirdword;
 
 	var inputObject = {index: count, data: [searchterms[0], searchterms[1]]};
-	count++;
 	console.log(inputObject.data);
 	
 	db.insert(inputObject, function(err, newDocs){
@@ -70,6 +69,7 @@ app.get('/processingDB', function(req, res){
 		console.log("biggest: "+biggestIndex);
 		console.log(docs[lastobjectIndex]);
 		lastData = docs[lastobjectIndex];
+		count++;
 		
 		res.redirect('/templateprocessing');
 	});
@@ -77,6 +77,8 @@ app.get('/processingDB', function(req, res){
 
 
 app.get('/templateprocessing', function(req,res){
+	var random = (int) (Math.random()*2);
+	console.log(random);
 	res.render('template.ejs',lastData);
 });
 	
