@@ -33,9 +33,9 @@ app.get('/formpost', function (req, res){
 app.post('/savingintoDB', function(req, res){
 	searchterms[0] = req.body.firstword;
 	searchterms[1] = req.body.secondword;
-	searchterms[2] = req.body.thirdword;
+	//searchterms[2] = req.body.thirdword;
 
-	var inputObject = {data: [searchterms[0], searchterms[1], searchterms[2]]};
+	var inputObject = {data: [searchterms[0], searchterms[1]]};
 	console.log(inputObject.data);
 	
 	db.insert(inputObject, function(err, newDocs){
