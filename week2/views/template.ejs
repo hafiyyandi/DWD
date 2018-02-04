@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
 	<title>Three-Word GIF Poetry</title> 
 </head>
 <body>
 	<div align="center" style="margin-top:100px">
 	<% if (data) {  %>
 		<% console.log(data[0]); %>
-        <h1><%= data[0] %>, <%= data[1] %>, &amp; <%= data[2] %></h1>
+		<% var giphyURL = "https://api.giphy.com/v1/gifs/random?api_key=uFczQQnDIgNYChtFQetHrpON63UOnlk3&tag=" %>
+  		<% var gifURL1 = giphyURL+data[0]; %>
+  		<% loadJSON(gifURL1, giphyLoaded1);%>
+  		<% function giphyLoaded1(respObj) { %>
+  			<%let imgsrc = respObj.data.image_original_url; %>
+  			<% document.getElementById("image1").src = imgsrc; %>
+		<% } %>
+		<div align="center" style="margin-top:100px">
+        	<h1><%= data[0] %>, <%= data[1] %>, &amp; <%= data[2] %></h1>
+        	<a href="#" id="link1" target="_blank"><img id="image1" height="200" width="auto" /> </a>
+    	</div>
     <% } %>
 	</div>
 </body>
