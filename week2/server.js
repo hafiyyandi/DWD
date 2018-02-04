@@ -16,6 +16,7 @@ app.set('view engine', 'ejs');
 var count=0;
 var submissions = [];
 var searchterms =[];
+var lastData;
 
 app.use(express.static('public'));
 
@@ -47,6 +48,7 @@ app.post('/savingintoDB', function(req, res){
 
 app.get('/processingDB', function(req, res){
 	db.find({}, function(err, docs) {
+	lastData = docs[docs.length -1];
 		// Loop through the results, send each one as if it were a new chat message
 		for (var i = 0; i < docs.length; i++) {
 			//console.log(i);
@@ -56,10 +58,13 @@ app.get('/processingDB', function(req, res){
 				//storedData.push(docs[i][j]);
 			}
 		}
-	var lastData = docs[docs.length -1];
-	});
 	
-	console.log(lastData);
+	res.redirect('/templateprocessing');
+	});
+});
+
+
+app.get('/templateprocessing', function(req,res){
 	res.render('template.ejs',lastData);
 });
 	
