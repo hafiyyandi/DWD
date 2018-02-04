@@ -51,10 +51,11 @@ app.get('/processingDB', function(req, res){
 		// Loop through the results, send each one as if it were a new chat message
 		for (var i = 0; i < docs.length; i++) {
 			console.log(i);
-			for (var j =0; j<docs[i].length;j++){
-				console.log(i+ " - "+j);
-				//storedData.push(docs[i][j]);
-			}
+			console.log(docs[i]);
+			// for (var j =0; j<docs[i].length;j++){
+			// 	console.log(i+ " - "+j);
+			// 	//storedData.push(docs[i][j]);
+			// }
 		}
 	});
 	//console.log("stored: "+storedData);
