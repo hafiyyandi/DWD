@@ -58,7 +58,6 @@ app.get('/processingDB', function(req, res){
 				//storedData.push(docs[i][j]);
 			}
 		}
-	
 	res.redirect('/templateprocessing');
 	});
 });
