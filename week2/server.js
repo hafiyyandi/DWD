@@ -13,7 +13,7 @@ var db = new Datastore({filename: "data.db", autoload: true});
 //Templates
 app.set('view engine', 'ejs');
 
-var count=0;
+var count=1;
 var submissions = [];
 var searchterms =[];
 var lastData;
@@ -35,12 +35,13 @@ app.post('/savingintoDB', function(req, res){
 	searchterms[1] = req.body.secondword;
 	//searchterms[2] = req.body.thirdword;
 
-	var inputObject = {data: [searchterms[0], searchterms[1]]};
+	var inputObject = {index: count, data: [searchterms[0], searchterms[1]]};
+	count++;
 	console.log(inputObject.data);
 	
 	db.insert(inputObject, function(err, newDocs){
 		console.log("err: " + err);
-		console.log("newDocs: " + newDocs.data);
+		console.log("newDocs: " + newDocs.index + " - "+newDocs.data);
 		res.redirect('/processingDB');
 	});
 	
