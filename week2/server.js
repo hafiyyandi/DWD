@@ -78,8 +78,14 @@ app.get('/processingDB', function(req, res){
 
 app.get('/templateprocessing', function(req,res){
 	var random = Math.floor(Math.random()*3);
-	console.log(random);
-	res.render('template.ejs',lastData);
+	if (random == 0){
+		res.render('template.ejs',lastData);
+	} else if (random ==1){
+		res.render('template-1.ejs',lastData);
+	} else {
+		res.render('template-2.ejs',lastData);
+	}
+	
 });
 	
 
