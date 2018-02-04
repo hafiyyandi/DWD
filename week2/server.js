@@ -53,8 +53,8 @@ app.get('/processingDB', function(req, res){
 	
 		// Loop through the results, send each one as if it were a new chat message
 		for (var i = 0; i < docs.length; i++) {
-			console.log(docs[i]);
-			if (docs[i].index > lastIndex){
+			//console.log(docs[i]);
+			if (docs[i].index >= lastIndex){
 				lastIndex = i;
 			}
 			//console.log(i);
@@ -64,7 +64,7 @@ app.get('/processingDB', function(req, res){
 			// 	//storedData.push(docs[i][j]);
 			// }
 		}
-		console.log(lastIndex);
+		console.log("last: lastIndex");
 		console.log(docs[lastIndex]);
 		lastData = docs[lastIndex];
 		res.redirect('/templateprocessing');
