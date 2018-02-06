@@ -1,5 +1,17 @@
+
+//mongodb://hafi:delapan8@ds125588.mlab.com:25588/dwd_hafi
+
 var express = require('express');
 var app = express();
+
+//MongoDB
+var mongojs = require('mongojs');
+var db = mongojs("hafi:delapan8@example.com:port/mydb", ["submissions"]);
+
+db.submissions.save({"attribute_to_save":"value_to_save"}, function(err, saved) {
+  if( err || !saved ) console.log("Not saved");
+  else console.log("Saved");
+});	
 
 //required for POST method
 var bodyParser = require('body-parser');
