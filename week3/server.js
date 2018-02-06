@@ -8,10 +8,10 @@ var app = express();
 var mongojs = require('mongojs');
 var db = mongojs("hafi:delapan8@example.com:port/mydb", ["submissions"]);
 
-db.submissions.save({"attribute_to_save":"value_to_save"}, function(err, saved) {
-  if( err || !saved ) console.log("Not saved");
-  else console.log("Saved");
-});	
+// db.submissions.save({"attribute_to_save":"value_to_save"}, function(err, saved) {
+//   if( err || !saved ) console.log("Not saved");
+//   else console.log("Saved");
+// });	
 
 //required for POST method
 var bodyParser = require('body-parser');
