@@ -8,10 +8,10 @@ var app = express();
 var mongojs = require('mongojs');
 var db = mongojs("hafi:delapan8@example.com:port/mydb", ["submissions"]);
 
-// db.submissions.save({"attribute_to_save":"value_to_save"}, function(err, saved) {
-//   if( err || !saved ) console.log("Not saved");
-//   else console.log("Saved");
-// });	
+db.submissions.save({"attribute_to_save":"value_to_save"}, function(err, saved) {
+  if( err || !saved ) console.log("Not saved");
+  else console.log("Saved");
+});	
 
 //required for POST method
 var bodyParser = require('body-parser');
@@ -26,7 +26,7 @@ var db = new Datastore({filename: "data.db", autoload: true});
 app.set('view engine', 'ejs');
 
 var count=1;
-var submissions = [];
+//var submissions = [];
 var searchterms =[];
 var lastData;
 
@@ -37,10 +37,10 @@ app.get('/count', function (req, res) {
   res.send("<html><body><h1>"+count+"</h1></body></html>");
 });
 
-app.get('/formpost', function (req, res){
-	submissions.push(req.query.textfield);
-	res.redirect('/display');
-});
+// app.get('/formpost', function (req, res){
+// 	submissions.push(req.query.textfield);
+// 	res.redirect('/display');
+// });
 
 app.post('/savingintoDB', function(req, res){
 	searchterms[0] = req.body.firstword;
@@ -113,14 +113,14 @@ app.post('/processit', function(req, res){
 	//res.send("You submitted: "+textvalue);
 });
 
-app.get('/display', function(req, res){
-	var htmlout = "<html><body>";
-	for (var i = 0; i<submissions.length; i++){
-		htmlout = htmlout + submissions[i] + "<br>";
-	}
-	var htmlout = htmlout + "</body></html>";
-	res.send(htmlout);
-});
+// app.get('/display', function(req, res){
+// 	var htmlout = "<html><body>";
+// 	for (var i = 0; i<submissions.length; i++){
+// 		htmlout = htmlout + submissions[i] + "<br>";
+// 	}
+// 	var htmlout = htmlout + "</body></html>";
+// 	res.send(htmlout);
+// });
 
 app.get('/', function (req, res) {
   res.send('HEY');
