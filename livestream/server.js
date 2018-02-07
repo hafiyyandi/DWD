@@ -6,6 +6,11 @@ var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({extended: true}); //for parsing form data
 app.use(urlencodedParser);
 
+var data = {
+	name: "Hafi",
+	other: "test test test"
+};
+
 //Templates
 app.set('view engine', 'ejs');
 
@@ -30,6 +35,10 @@ app.get('/fblogin', function (req, res) {
 	console.log(loginURL);
 	
 	res.redirect(loginURL);
+});
+
+app.get('/fbtest', function (req, res) {
+	res.render('template.ejs', data);
 });
 
 app.get('/loggedin', function (req,res){
