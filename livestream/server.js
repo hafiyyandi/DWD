@@ -16,7 +16,7 @@ app.listen(3000, function () {
 });
 
 app.get('/', function (req, res) {
-  res.send('HEY');
+  res.send('Hi there, this is livestream directory.');
 });
 
 
@@ -27,7 +27,13 @@ app.get('/fblogin', function (req, res) {
 	var state_param = "st=state123"
 	loginURL = loginURL + "client_id={" + app_id + "}&redirect_uri={" + redirect_uri + "}&state={" + state_param + "}"
 	console.log(loginURL);
-	//res.redirect(loginURL);
+	
+	res.redirect(loginURL);
+});
+
+app.get('/loggedin', function (req,res){
+	res.send('HELLO you\'re logged in, I guess');
+
 });
 
 
