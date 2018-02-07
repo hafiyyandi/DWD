@@ -23,7 +23,7 @@ app.get('/', function (req, res) {
 app.get('/fblogin', function (req, res) {
 	var loginURL = "https://www.facebook.com/v2.12/dialog/oauth?";
 	var app_id = "294044474454157";
-	var redirect_uri = "165.227.205.200:3000/loggedin"
+	var redirect_uri = "http://165.227.205.200:3000/loggedin"
 	var state_param = "st=state123"
 	loginURL = loginURL + "client_id={" + app_id + "}&redirect_uri={" + redirect_uri + "}&state={" + state_param + "}"
 	console.log(loginURL);
