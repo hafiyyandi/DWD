@@ -50,7 +50,7 @@ app.get('/fbtest', function (req, res) {
 app.get('/getlivestream', function (req, res) {
 	var token = req.query.token;
 	console.log(token);
-  	res.send('Hi there, your token is: ' token;
+  	res.send('Hi there, your token is: ' + token);
 });
 
 
