@@ -4,13 +4,14 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
+    <script type=text/javascript>
+        var userAccessToken;
+    </script>
 
 	<title>TRYING GRAPH API</title> 
 </head>
 <body style="background-color: #000">
     <script> 
-
-    var userAccessToken;
 
     // This is called with the results from from FB.getLoginStatus().
     function statusChangeCallback(response) {
