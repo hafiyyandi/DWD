@@ -49,8 +49,12 @@ app.get('/fbtest', function (req, res) {
 
 app.get('/getlivestream', function (req, res) {
 	var token = req.query.token;
-	console.log(token);
-  	res.send('Hi there, your token is: ' + token);
+	var ID = req.query.ID;
+	
+	console.log("token: " + token);
+	console.log("ID: "+ ID);
+	var getURL = "https://graph.facebook.com/v2.12/" + ID + "/live_videos?access_token=" + token;
+  	res.redirect(getURL);
 });
 
 
