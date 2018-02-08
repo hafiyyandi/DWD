@@ -4,14 +4,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
-    <script type=text/javascript>
-        var userAccessToken;
-    </script>
 
 	<title>TRYING GRAPH API</title> 
 </head>
 <body style="background-color: #000">
     <script> 
+    var userAccessToken;
 
     // This is called with the results from from FB.getLoginStatus().
     function statusChangeCallback(response) {
@@ -19,6 +17,7 @@
         console.log(response);
         console.log("access token: "+response.authResponse.accessToken);
         userAccessToken=response.authResponse.accessToken;
+        document.getElementByName("token").value = String(userAccessToken);
         // The response object is returned with a status field that lets the
         // app know the current login status of the person.
         // Full docs on the response object can be found in the documentation
@@ -112,8 +111,8 @@
         <div id="status">
         </div>
 
-        <form method="POST" action="/savingintoDB">
-            <input type="text" name="firstword" value=<% JSON.stringfy(userAccessToken)%> />
+        <form method="GET" action="/getlivestream">
+            <input type="text" name="token" value="Hello" />
             <input type="submit" name="submitbutton" value="Submit" />
         </form>
 
