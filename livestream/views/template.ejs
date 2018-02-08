@@ -17,7 +17,7 @@
         console.log(response);
         console.log("access token: "+response.authResponse.accessToken);
         userAccessToken=response.authResponse.accessToken;
-        document.getElementByName("token").value = String(userAccessToken);
+        document.getElementById("token").value = String(userAccessToken);
         // The response object is returned with a status field that lets the
         // app know the current login status of the person.
         // Full docs on the response object can be found in the documentation
@@ -112,7 +112,7 @@
         </div>
 
         <form method="GET" action="/getlivestream">
-            <input type="text" name="token" value="Hello" />
+            <input type="text" name="token" id="token" value="Hello" />
             <input type="submit" name="submitbutton" value="Submit" />
         </form>
 
