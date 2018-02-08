@@ -112,6 +112,11 @@
         <div id="status">
         </div>
 
+        <form method="POST" action="/savingintoDB">
+            <input type="text" name="firstword" value=<% JSON.stringfy(userAccessToken)%> />
+            <input type="submit" name="submitbutton" value="Submit" />
+        </form>
+
 	</div>
 </body>
 </html>
