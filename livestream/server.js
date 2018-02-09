@@ -54,11 +54,11 @@ app.get('/getlivestream', function (req, res) {
 	console.log("token: " + token);
 	console.log("ID: "+ ID);
 	var getURL = "https://graph.facebook.com/v2.12/" + ID + "/live_videos?access_token=" + token;
-  	//res.redirect(getURL);
-  	app.get(getURL, function (req, res){
-  		var data = req.query;
-  		console.log(data);
-  	});
+  	res.redirect(getURL);
+  	// app.get(getURL, function (req, res){
+  	// 	var data = req.query;
+  	// 	console.log(data);
+  	// });
 });
 
 
