@@ -60,25 +60,25 @@ app.get('/getlivestream', function (req, res) {
 	console.log("ID: "+ ID);
 	var getVidListURL = "https://graph.facebook.com/v2.12/" + ID + "/live_videos?access_token=" + token;
 
-	https.get(getVidListURL, (resp) => {
-	  let data = '';
+	// https.get(getVidListURL, (resp) => {
+	//   let data = '';
 
-	  // A chunk of data has been recieved.
-	  resp.on('data', (chunk) => {
-	    data += chunk;
-	  });
+	//   // A chunk of data has been recieved.
+	//   resp.on('data', (chunk) => {
+	//     data += chunk;
+	//   });
 
-	  // The whole response has been received. Print out the result.
-	  resp.on('end', () => {
-	    //console.log(JSON.parse(data).explanation);
-		// do seomthing
-		vidList = JSON.parse(data);
-		console.log(vidList.data[0].id);
-	  });
+	//   // The whole response has been received. Print out the result.
+	//   resp.on('end', () => {
+	//     //console.log(JSON.parse(data).explanation);
+	// 	// do seomthing
+	// 	vidList = JSON.parse(data);
+	// 	console.log(vidList.data[0].id);
+	//   });
 
-	}).on("error", (err) => {
-	  console.log("Error: " + err.message);
-	});
+	// }).on("error", (err) => {
+	//   console.log("Error: " + err.message);
+	// });
 
   	//res.redirect(getURL);
   	// app.get(getURL, function (req, res){
