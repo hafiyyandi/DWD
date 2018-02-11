@@ -4,7 +4,7 @@
     <script type="text/javascript">
       function setup() {
         var datafromserver = "<%=thedata%>";
-        console.log(datafromserver);
+        console.log(datafromserver[0]._id);
         //alert(datafromserver);
       }
       window.addEventListener('load', setup);
