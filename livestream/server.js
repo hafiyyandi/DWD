@@ -13,7 +13,7 @@ const https = require('https');
 
 //for MongoDB
 var mongojs = require('mongojs');
-var config = require('config.js');
+var config = require('./config.js');
 
 //Templates
 app.set('view engine', 'ejs');
