@@ -4,10 +4,10 @@
     <script type="text/javascript">
       var videoIDs = [];
       function setup() {
-        var datafromserver = <%=thedata%>;
+        var datafromserver = "<%=thedata%>";
         //alert(datafromserver);
         console.log("THIS IS CLIENT SIDE");
-        console.log(datafromserver);
+        console.log(datafromserver[0]);
         
         for (var i=0; i<datafromserver.length; i++){
           var newItem = datafromserver[i].liveVideoID;
@@ -23,14 +23,14 @@
   <body>
     <script type="text/javascript">
 
-      for (var i =0; i>videoIDs.length; i++){
-        var a = document.createElement('a');
-        var linkText = document.createTextNode(videoIDs[i]);
-        a.appendChild(linkText);
-        a.title = "my title text";
-        a.href = "/findall?liveVideoID="+videoIDs[i];
-        document.body.appendChild(a);
-      }
+      // for (var i =0; i>videoIDs.length; i++){
+      //   var a = document.createElement('a');
+      //   var linkText = document.createTextNode(videoIDs[i]);
+      //   a.appendChild(linkText);
+      //   a.title = "my title text";
+      //   a.href = "/findall?liveVideoID="+videoIDs[i];
+      //   document.body.appendChild(a);
+      // }
 
     </script>
 
