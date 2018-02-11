@@ -133,26 +133,37 @@ function getLiveComments(url){
 				var culpritName = commentResponse.data[i].from.name;
 				var culpritID = commentResponse.data[i].from.id;
 
-				db.submissions.find({"commentID":commentID}, function(err, saved) {
-					console.log("SEARCHING FOR: "+ commentID);
-	  				if( err || !saved) { //if the data doesn't already exist in the database,
-	  					//save to DB
-	  					console.log("SAVING: "+ commentID);
-						db.submissions.save({
-							"liveVideoID": liveID,
-							"commentID":commentID,
-							"commentMessage": commentMessage,
-							"culpritName" : culpritName,
-							"culpritID": culpritID
-						}, function(err, saved) {
-	  					if( err || !saved ) console.log("Not saved");
-	  					else console.log("New Comment: " + commentID + " is saved");
-						});
-	  				}
-	  				// else saved.forEach( function(record) {
-	    		// 		console.log(record);
-	 				 // } );
+				db.submissions.save({
+					"_id":commentID,
+					"liveVideoID": liveID,
+					"commentMessage": commentMessage,
+					"culpritName" : culpritName,
+					"culpritID": culpritID
+				}, function(err, saved) {
+					if( err || !saved ) console.log("Not saved");
+					else console.log("New Comment: " + commentID + " is saved");
 				});
+
+				// db.submissions.find({"commentID":commentID}, function(err, saved) {
+				// 	console.log("SEARCHING FOR: "+ commentID);
+	  	// 			if( err || !saved) { //if the data doesn't already exist in the database,
+	  	// 				//save to DB
+	  	// 				console.log("SAVING: "+ commentID);
+				// 		db.submissions.save({
+				// 			"liveVideoID": liveID,
+				// 			"commentID":commentID,
+				// 			"commentMessage": commentMessage,
+				// 			"culpritName" : culpritName,
+				// 			"culpritID": culpritID
+				// 		}, function(err, saved) {
+	  	// 				if( err || !saved ) console.log("Not saved");
+	  	// 				else console.log("New Comment: " + commentID + " is saved");
+				// 		});
+	  	// 			}
+	  	// 			// else saved.forEach( function(record) {
+	   //  		// 		console.log(record);
+	 		// 		 // } );
+				// });
 
 				
 			}
