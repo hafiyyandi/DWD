@@ -134,6 +134,7 @@ function getLiveComments(url){
 				var culpritID = commentResponse.data[i].from.id;
 
 				db.submissions.find({"commentID":commentID}, function(err, saved) {
+					console.log("SEARCHING FOR: "+ commentID);
 	  				if( err || !saved) { //if the data doesn't already exist in the database,
 	  					//save to DB
 	  					console.log("SAVING: "+ commentID);
