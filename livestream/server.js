@@ -103,12 +103,6 @@ app.get('/getlivestream', function (req, res) {
 	}).on("error", (err) => {
 	  console.log("Error: " + err.message);
 	});
-
-  	//res.redirect(getURL);
-  	// app.get(getURL, function (req, res){
-  	// 	var data = req.query;
-  	// 	console.log(data);
-  	// });
 });
 
 
@@ -141,7 +135,7 @@ function getLiveComments(url){
 					"culpritID": culpritID
 				}, function(err, saved) {
 					if( err || !saved ) console.log("Not saved");
-					else console.log("New Comment: " + commentID + " is saved");
+					else console.log("New comment is saved");
 				});
 
 				// db.submissions.find({"commentID":commentID}, function(err, saved) {
@@ -179,7 +173,19 @@ function getLiveComments(url){
 
 }
 
+app.get('/extractcomments', function(req, res) {
 
+  db.submissions.find({}, function(err, saved) {
+    if (err || !saved) {
+    	console.log("No results");
+    }
+    else {
+      console.log(saved);
+      res.render('display.ejs', {thedata:saved});
+    }
+  });
+
+});
 
 
 

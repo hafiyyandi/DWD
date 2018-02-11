@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>Some Template</title>
+    <script type="text/javascript">
+      function setup() {
+        var datafromserver = "<%=thedata%>";
+        var videoIDs = [];
+        for (var i=0; i<datafromserver.length<i++){
+          var newItem = datafromserver.liveVideoID;
+          videoIDs.indexOf(newItem) === -1 ? videoIDs.push(newItem) : console.log("This item already exists");
+        }
+      }
+      window.addEventListener('load', setup);
+    </script>
+
+  </head>
+  <body>
+
+    <% for (var i = 0; i < videoIDs.length; i++) { %>
+      <a href="/findall?liveVideoID=<%= videoIDs[i] %>"><%= videoIDs[i] %> :
+    <%= videoIDs[i] %> </a><br />
+    <!--JSON.stringify(thedata[i])-->
+    <% } %>
+
+  </body>
+</html>
