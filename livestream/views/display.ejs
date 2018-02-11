@@ -12,17 +12,23 @@
         }
       }
       window.addEventListener('load', setup);
+
     </script>
 
   </head>
   <body>
-    <% if (videoIDs[0]) { %>
-     <% for (var i = 0; i < videoIDs.length; i++) { %>
-      <a href="/findall?liveVideoID=<%= videoIDs[i] %>"><%= videoIDs[i] %> :
-    <%= videoIDs[i] %> </a><br />
-    <!--JSON.stringify(thedata[i])-->
-    <% } %>
-    <% } %>
+    <script type="text/javascript">
+
+      for (var i =0; i>videoIDs.length; i++){
+        var a = document.createElement('a');
+        var linkText = document.createTextNode(videoIDs[i]);
+        a.appendChild(linkText);
+        a.title = "my title text";
+        a.href = "/findall?liveVideoID="+videoIDs[i];
+        document.body.appendChild(a);
+      }
+
+    </script>
 
   </body>
 </html>
