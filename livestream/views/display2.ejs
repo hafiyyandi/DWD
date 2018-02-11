@@ -5,14 +5,14 @@
       function setup() {
         var datafromserver = "<%=thedata%>";
         //console.log(datafromserver[0]._id);
-        //alert(datafromserver);
+        alert(JSON.stringfy(datafromserver[0]));
       }
       window.addEventListener('load', setup);
     </script>
 
   </head>
   <body>
-    
+
     <% for (var i = 0; i < thedata.length; i++) { %>
       <a href="/one?_id=<%= thedata[i]._id %>"><%= thedata[i]._id %> :
     <%= thedata[i].commentMessage %> </a><br />
