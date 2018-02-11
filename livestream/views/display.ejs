@@ -15,7 +15,7 @@
 
   </head>
   <body>
-    <% if (videoIDs[0]){
+    <% if (videoIDs[0]){ %>
     <% for (var i = 0; i < videoIDs.length; i++) { %>
       <a href="/findall?liveVideoID=<%= videoIDs[i] %>"><%= videoIDs[i] %> :
     <%= videoIDs[i] %> </a><br />
