@@ -50,7 +50,7 @@ const https = require('https');
 // });
 
 app.get('/fbtest', function (req, res) {
-	res.render('template.ejs', data);
+	res.render('template.ejs');
 });
 
 
