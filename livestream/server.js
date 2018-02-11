@@ -136,6 +136,7 @@ function getLiveComments(url){
 				db.submissions.find({"commentID":commentID}, function(err, saved) {
 	  				if( err || !saved) { //if the data doesn't already exist in the database,
 	  					//save to DB
+	  					console.log("SAVING: "+ commentID);
 						db.submissions.save({
 							"liveVideoID": liveID,
 							"commentID":commentID,
