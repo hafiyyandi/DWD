@@ -113,7 +113,7 @@ app.get('/getlivestream', function (req, res) {
 
 
 function getLiveComments(url){
-	setInverval(function(){
+	setInterval(function(){
 		console.log("getting live comments... iteration "+ count);
 		https.get(url, (resp) => {
 		  let data = '';
