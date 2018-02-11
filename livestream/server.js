@@ -28,7 +28,7 @@ app.get('/', function (req, res) {
 
 
 //for HTTPS requests
-const https = require('https');
+var https = require('https');
 
 // app.get('/fblogin', function (req, res) {
 // 	var loginURL = "https://www.facebook.com/v2.12/dialog/oauth?";
