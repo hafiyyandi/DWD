@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Some Template</title>
+    <script type="text/javascript">
+      function setup() {
+        var datafromserver = "<%=thedata%>";
+        //alert(datafromserver);
+      }
+      window.addEventListener('load', setup);
+    </script>
+
+  </head>
+  <body style="background-color: blue;">
+
+    <% for (var i = 0; i < thedata.length; i++) { %>
+      <a href="/one?_id=<%= thedata[i]._id %>"><%= thedata[i]._id %> :
+    <%= thedata[i].commentMessage %> </a><br />
+    <!--JSON.stringify(thedata[i])-->
+    <% } %>
+
+  </body>
+</html>

@@ -181,7 +181,7 @@ app.get('/extractcomments', function(req, res) {
     }
     else {
       //console.log(saved);
-      res.render('display.ejs', {thedata:saved});
+      res.render('display2.ejs', {thedata:saved});
     }
   });
 
