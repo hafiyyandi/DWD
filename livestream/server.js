@@ -111,7 +111,7 @@ app.get('/getlivestream', function (req, res) {
 });
 
 
-getLiveComments(url){
+function getLiveComments(url){
 
 	https.get(url, (resp) => {
 	  let data = '';
