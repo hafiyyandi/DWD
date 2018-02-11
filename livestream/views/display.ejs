@@ -5,7 +5,8 @@
       var videoIDs = [];
       function setup() {
         var datafromserver = "<%=thedata%>";
-        console.log(datafromserver);
+        console.log("THIS IS CLIENT SIDE");
+        console.log(JSON.stringify(datafromserver));
         
         for (var i=0; i<datafromserver.length; i++){
           var newItem = datafromserver.liveVideoID;
