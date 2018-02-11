@@ -12,15 +12,10 @@
 
   </head>
   <body>
-
+    
     <% for (var i = 0; i < thedata.length; i++) { %>
-      <% var videoIDs = []; %>
-      <% var newItem = thedata[i].liveVideoID;%>
-      <% videoIDs.indexOf(newItem) === -1 ? videoIDs.push(newItem) : console.log("This item already exists”); %>
-    <% } %>
-    <% for (var j = 0; j < videoIDs.length; j++) { %>
-      <a href="/one?_id=<%= videoIDs[j] %>"><%= videoIDs[j] %> :
-    <%= videoIDs[j] %> </a><br />
+      <a href="/one?_id=<%= thedata[i]._id %>"><%= thedata[i]._id %> :
+    <%= thedata[i].commentMessage %> </a><br />
     <!--JSON.stringify(thedata[i])-->
     <% } %>
 
