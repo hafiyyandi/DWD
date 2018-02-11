@@ -6,7 +6,7 @@
       function setup() {
         var datafromserver = "<%=thedata%>";
         
-        for (var i=0; i<datafromserver.length<i++){
+        for (var i=0; i<datafromserver.length; i++){
           var newItem = datafromserver.liveVideoID;
           videoIDs.indexOf(newItem) === -1 ? videoIDs.push(newItem) : console.log("This item already exists");
         }
