@@ -15,11 +15,12 @@
 
   </head>
   <body>
-
+    <% if (videoIDs[0]){
     <% for (var i = 0; i < videoIDs.length; i++) { %>
       <a href="/findall?liveVideoID=<%= videoIDs[i] %>"><%= videoIDs[i] %> :
     <%= videoIDs[i] %> </a><br />
     <!--JSON.stringify(thedata[i])-->
+    <% } %>
     <% } %>
 
   </body>
