@@ -6,10 +6,12 @@ var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({extended: true}); //for parsing form data
 app.use(urlencodedParser);
 
-var data = {
-	name: "Hafi",
-	other: "test test test"
-};
+// var data = {
+// 	name: "Hafi",
+// 	other: "test test test"
+// };
+
+var vidList;
 
 //Templates
 app.set('view engine', 'ejs');
@@ -24,6 +26,9 @@ app.get('/', function (req, res) {
   res.send('Hi there, this is livestream directory.');
 });
 
+
+//for HTTPS requests
+const https = require('https');
 
 // app.get('/fblogin', function (req, res) {
 // 	var loginURL = "https://www.facebook.com/v2.12/dialog/oauth?";
@@ -53,8 +58,29 @@ app.get('/getlivestream', function (req, res) {
 	
 	console.log("token: " + token);
 	console.log("ID: "+ ID);
-	var getURL = "https://graph.facebook.com/v2.12/" + ID + "/live_videos?access_token=" + token;
-  	res.redirect(getURL);
+	var getVidListURL = "https://graph.facebook.com/v2.12/" + ID + "/live_videos?access_token=" + token;
+
+	https.get(getVidListURL, (resp) => {
+	  let data = '';
+
+	  // A chunk of data has been recieved.
+	  resp.on('data', (chunk) => {
+	    data += chunk;
+	  });
+
+	  // The whole response has been received. Print out the result.
+	  resp.on('end', () => {
+	    //console.log(JSON.parse(data).explanation);
+		// do seomthing
+		vidList = JSON.parse(data);
+		console.log(vidList.data[0].id);
+	  });
+
+	}).on("error", (err) => {
+	  console.log("Error: " + err.message);
+	});
+
+  	//res.redirect(getURL);
   	// app.get(getURL, function (req, res){
   	// 	var data = req.query;
   	// 	console.log(data);

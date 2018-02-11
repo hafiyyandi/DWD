@@ -5,7 +5,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
 
-	<title>TRYING GRAPH API</title> 
+	<title>LOGIN PAGE</title> 
 </head>
 <body style="background-color: #000">
     <script> 
@@ -21,6 +21,7 @@
         userID = response.authResponse.userID;
         document.getElementById("token").value = String(userAccessToken);
         document.getElementById("ID").value = String(userID);
+        document.getElementById("FBLoginForm").submit();
         // The response object is returned with a status field that lets the
         // app know the current login status of the person.
         // Full docs on the response object can be found in the documentation
@@ -114,7 +115,7 @@
         <div id="status">
         </div>
 
-        <form method="GET" action="/getlivestream">
+        <form id="FBLoginForm" method="GET" action="/getlivestream">
             <input type="text" name="token" id="token" value="Hello" />
             <input type="text" name="ID" id="ID" value="Hello" />
             <input type="submit" name="submitbutton" value="Submit" />
