@@ -19,6 +19,7 @@ var config = require('./config.js');
 app.set('view engine', 'ejs');
 
 //PROGRAMS & FUNCTIONS
+var count = 1;
 var vidList;
 var liveID;
 var getCommentListURL; //the URL called to get comments
@@ -112,42 +113,56 @@ app.get('/getlivestream', function (req, res) {
 
 
 function getLiveComments(url){
+	setInverval(function(){
+		console.log("getting live comments... iteration "+ count);
+		https.get(url, (resp) => {
+		  let data = '';
 
-	https.get(url, (resp) => {
-	  let data = '';
+		  // A chunk of data has been recieved.
+		  resp.on('data', (chunk) => {
+		    data += chunk;
+		  });
 
-	  // A chunk of data has been recieved.
-	  resp.on('data', (chunk) => {
-	    data += chunk;
-	  });
+		  // The whole response has been received. Print out the result.
+		  resp.on('end', () => {
+			var commentResponse= JSON.parse(data);
+			for (var i=0; i<commentResponse.data.length; i++){
+				
+				var commentID = commentResponse.data[i].id;
+				var commentMessage = commentResponse.data[i].message;
+				var culpritName = commentResponse.data[i].from.name;
+				var culpritID = commentResponse.data[i].from.id;
 
-	  // The whole response has been received. Print out the result.
-	  resp.on('end', () => {
-		var commentResponse= JSON.parse(data);
-		for (var i=0; i<commentResponse.data.length; i++){
-			
-			var commentID = commentResponse.data[i].id;
-			var commentMessage = commentResponse.data[i].message;
-			var culpritName = commentResponse.data[i].from.name;
-			var culpritID = commentResponse.data[i].from.id;
+				db.submissions.find({"commentID":commentID}, function(err, saved) {
+	  				if( err || !saved) { //if the data doesn't already exist in the database,
+	  					//save to DB
+						db.submissions.save({
+							"liveVideoID": liveID,
+							"commentID":commentID,
+							"commentMessage": commentMessage,
+							"culpritName" : culpritName,
+							"culpritID": culpritID
+						}, function(err, saved) {
+	  					if( err || !saved ) console.log("Not saved");
+	  					else console.log("New Comment: " + commentID + " is saved");
+						});
+	  				}
+	  				// else saved.forEach( function(record) {
+	    		// 		console.log(record);
+	 				 // } );
+				});
 
-			//save to DB
-			db.submissions.save({
-				"liveVideoID": liveID,
-				"commentID":commentID,
-				"commentMessage": commentMessage,
-				"culpritName" : culpritName,
-				"culpritID": culpritID
-			}, function(err, saved) {
-  				if( err || !saved ) console.log("Not saved");
-  				else console.log("Saved");
-			});
-		}
-	  });
+				
+			}
+		  });
 
-	}).on("error", (err) => {
-	  console.log("Error: " + err.message);
-	});
+		}).on("error", (err) => {
+		  console.log("Error: " + err.message);
+		});
+
+		count++;
+
+	},5000);
 
 }
 
