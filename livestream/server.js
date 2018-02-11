@@ -8,16 +8,21 @@ var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({extended: true}); //for parsing form data
 app.use(urlencodedParser);
 
-// var data = {
-// 	name: "Hafi",
-// 	other: "test test test"
-// };
+//for HTTPS requests
+const https = require('https');
 
-var vidList;
+//for MongoDB
+var mongojs = require('mongojs');
+var config = require('config.js');
 
 //Templates
 app.set('view engine', 'ejs');
 
+//PROGRAMS & FUNCTIONS
+var vidList;
+var db = mongojs(config.mlabstring, ["submissions"]);
+
+//For public directory files
 app.use(express.static('public'));
 
 app.listen(80, function () {
@@ -28,9 +33,6 @@ app.get('/', function (req, res) {
   res.send('Hi there, this is livestream directory.');
 });
 
-
-//for HTTPS requests
-const https = require('https');
 
 // app.get('/fblogin', function (req, res) {
 // 	var loginURL = "https://www.facebook.com/v2.12/dialog/oauth?";
@@ -73,13 +75,24 @@ app.get('/getlivestream', function (req, res) {
 	  // The whole response has been received. Print out the result.
 	  resp.on('end', () => {
 	    //console.log(JSON.parse(data).explanation);
-		// do seomthing
 		vidList = JSON.parse(data);
-		console.log("ALL VIDEOS")
-		console.log(vidList);
-		var newestVidID = vidList.data[0].id;
-		var getCommentListURL = "https://graph.facebook.com/v2.12/" + newestVidID + "/comments?access_token=" + token;
-		res.redirect(getCommentListURL);
+		//console.log("ALL VIDEOS")
+		//console.log(vidList);
+		
+		var liveID;
+
+		for (var i=0; i<vidList.data.length; i++){
+			if (vidList.data[i].status =='LIVE'){
+				liveID = vidList.data[i].id;
+				break;
+			}
+		}
+
+		if (liveID){
+			var getCommentListURL = "https://graph.facebook.com/v2.12/" + liveID + "/comments?access_token=" + token;
+			res.redirect(getCommentListURL);
+		}
+		
 	  });
 
 	}).on("error", (err) => {
