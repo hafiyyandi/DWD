@@ -6,10 +6,10 @@
       function setup() {
         var datafromserver = "<%=thedata%>";
         console.log("THIS IS CLIENT SIDE");
-        console.log(JSON.stringify(datafromserver));
+        console.log(datafromserver);
         
         for (var i=0; i<datafromserver.length; i++){
-          var newItem = datafromserver.liveVideoID;
+          var newItem = datafromserver[i].liveVideoID;
           console.log("NEW ITEM: "+newItem);
           videoIDs.indexOf(newItem) === -1 ? videoIDs.push(newItem) : console.log("This item already exists");
         }
