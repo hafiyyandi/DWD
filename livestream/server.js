@@ -20,6 +20,9 @@ app.set('view engine', 'ejs');
 
 //PROGRAMS & FUNCTIONS
 var vidList;
+var liveID;
+var getCommentListURL; //the URL called to get comments
+
 var db = mongojs(config.mlabstring, ["submissions"]);
 
 //For public directory files
@@ -78,8 +81,6 @@ app.get('/getlivestream', function (req, res) {
 		vidList = JSON.parse(data);
 		//console.log("ALL VIDEOS")
 		//console.log(vidList);
-		
-		var liveID;
 
 		for (var i=0; i<vidList.data.length; i++){
 			console.log(vidList.data[i].id + ": " + vidList.data[i].status);
@@ -91,8 +92,9 @@ app.get('/getlivestream', function (req, res) {
 		}
 
 		if (liveID){
-			var getCommentListURL = "https://graph.facebook.com/v2.12/" + liveID + "/comments?access_token=" + token;
-			res.redirect(getCommentListURL);
+			getCommentListURL = "https://graph.facebook.com/v2.12/" + liveID + "/comments?access_token=" + token;
+			getLiveComments(getCommentListURL);
+			//res.redirect(getCommentListURL);
 		}
 		
 	  });
@@ -107,6 +109,47 @@ app.get('/getlivestream', function (req, res) {
   	// 	console.log(data);
   	// });
 });
+
+
+getLiveComments(url){
+
+	https.get(url, (resp) => {
+	  let data = '';
+
+	  // A chunk of data has been recieved.
+	  resp.on('data', (chunk) => {
+	    data += chunk;
+	  });
+
+	  // The whole response has been received. Print out the result.
+	  resp.on('end', () => {
+		var commentResponse= JSON.parse(data);
+		for (var i=0; i<commentResponse.data.length; i++){
+			
+			var commentID = commentResponse.data[i].id;
+			var commentMessage = commentResponse.data[i].message;
+			var culpritName = commentResponse.data[i].from.name;
+			var culpritID = commentResponse.data[i].from.id;
+
+			//save to DB
+			db.submissions.save({
+				"liveVideoID": liveID,
+				"commentID":commentID,
+				"commentMessage": commentMessage,
+				"culpritName" : culpritName,
+				"culpritID": culpritID
+			}, function(err, saved) {
+  				if( err || !saved ) console.log("Not saved");
+  				else console.log("Saved");
+			});
+		}
+	  });
+
+	}).on("error", (err) => {
+	  console.log("Error: " + err.message);
+	});
+
+}
 
 
 
