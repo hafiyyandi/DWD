@@ -3,7 +3,7 @@
     <title>Some Template</title>
     <script type="text/javascript">
       function setup() {
-        var datafromserver = "<%=thedata%>";
+        var datafromserver = <%thedata%>;
         //console.log(datafromserver[0]._id);
         alert(JSON.stringify(datafromserver[0]));
       }
@@ -16,7 +16,7 @@
     <% for (var i = 0; i < thedata.length; i++) { %>
       <a href="/one?_id=<%= thedata[i]._id %>"><%= thedata[i]._id %> :
     <%= thedata[i].commentMessage %> </a><br />
-    <% JSON.stringify(thedata[i]) %>
+    <!--JSON.stringify(thedata[i]) -->
     <% } %>
 
   </body>
