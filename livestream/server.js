@@ -180,7 +180,7 @@ app.get('/extractcomments', function(req, res) {
     	console.log("No results");
     }
     else {
-      console.log(saved);
+      //console.log(saved);
       res.render('display.ejs', {thedata:saved});
     }
   });
