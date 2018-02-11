@@ -75,7 +75,9 @@ app.get('/getlivestream', function (req, res) {
 	    //console.log(JSON.parse(data).explanation);
 		// do seomthing
 		vidList = JSON.parse(data);
-		console.log(vidList.data[0].id);
+		var newestVidID = vidList.data[0].id;
+		var getCommentListURL = "https://graph.facebook.com/v2.12/" + newestVidID + "/comments?access_token=" + token;
+		res.redirect(getCommentListURL);
 	  });
 
 	}).on("error", (err) => {
