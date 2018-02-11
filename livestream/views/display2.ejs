@@ -16,7 +16,7 @@
     <% for (var i = 0; i < thedata.length; i++) { %>
       <a href="/one?_id=<%= thedata[i]._id %>"><%= thedata[i]._id %> :
     <%= thedata[i].commentMessage %> </a><br />
-    <!--JSON.stringify(thedata[i])-->
+    <% JSON.stringify(thedata[i]) %>
     <% } %>
 
   </body>
