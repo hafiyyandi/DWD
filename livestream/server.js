@@ -82,8 +82,10 @@ app.get('/getlivestream', function (req, res) {
 		var liveID;
 
 		for (var i=0; i<vidList.data.length; i++){
+			console.log(vidList.data[i].id + ": " + vidList.data[i].status);
 			if (vidList.data[i].status =='LIVE'){
 				liveID = vidList.data[i].id;
+				console.log("live ID: " +liveID)
 				break;
 			}
 		}
