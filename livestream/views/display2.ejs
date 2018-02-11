@@ -4,7 +4,7 @@
     <script type="text/javascript">
       function setup() {
         var datafromserver = "<%=thedata%>";
-        console.log(datafromserver[0]._id);
+        //console.log(datafromserver[0]._id);
         //alert(datafromserver);
       }
       window.addEventListener('load', setup);
@@ -14,6 +14,8 @@
   <body>
 
     <% for (var i = 0; i < thedata.length; i++) { %>
+      <% var comments = []; %>
+      <% var newItem = thedata[i].liveVideoID;%>
       <a href="/one?_id=<%= thedata[i]._id %>"><%= thedata[i]._id %> :
     <%= thedata[i].commentMessage %> </a><br />
     <!--JSON.stringify(thedata[i])-->
