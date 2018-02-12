@@ -1,12 +1,14 @@
 <html>
   <head>
-    <title>Select Video</title>
+    <title>Comments</title>
   </head>
   <body>
-    <h1> Select A Live Video </h1>
+    <h1> Video : <%=thedata[0].liveVideoID%> </h1>
     <% for (var i = 0; i < thedata.length; i++) { %>
-      <a href="/find?liveVideoID=<%= thedata[i] %>"> video :
-    <%= thedata[i]%> </a><br />
+    <p>
+      <b><%= thedata[i].commentMessage%></b><br/>
+      by: <%= thedata[i].culpritName%>
+    </p>
     <!--JSON.stringify(thedata[i]) -->
     <% } %>
 

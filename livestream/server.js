@@ -189,7 +189,7 @@ app.get('/find', function(req,res){
     	}
     	else {
       	console.log(saved);
-      	//res.render('displaycomments.ejs', {thedata:saved});
+      	res.render('displaycomments.ejs', {thedata:saved});
     	}
   	});
 
