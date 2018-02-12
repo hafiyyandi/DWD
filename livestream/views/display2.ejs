@@ -2,12 +2,11 @@
   <head>
     <title>Some Template</title>
     <script type="text/javascript">
-      function setup() {
         var datafromserver = <%=thedata%>;
+        var datafromserver2 = "<%=thedata%>";
+        var datafromserver3 = JSON.stringify(<%=thedata%>);
         //console.log(datafromserver[0]._id);
-        alert(JSON.stringify(datafromserver[0]));
-      }
-      window.addEventListener('load', setup);
+        //alert(JSON.stringify(datafromserver[0]));
     </script>
 
   </head>
