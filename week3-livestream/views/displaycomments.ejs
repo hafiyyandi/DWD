@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <title>Comments</title>
+  </head>
+  <body>
+    <h1> Video : <%=thedata[0].liveVideoID%> </h1>
+    <% for (var i = 0; i < thedata.length; i++) { %>
+    <p>
+      <b><%= thedata[i].commentMessage%></b><br/>
+      by: <%= thedata[i].culpritName%>
+    </p>
+    <!--JSON.stringify(thedata[i]) -->
+    <% } %>
+
+  </body>
+</html>
