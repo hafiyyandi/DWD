@@ -138,27 +138,6 @@ function getLiveComments(url){
 					else console.log("New comment is saved");
 				});
 
-				// db.submissions.find({"commentID":commentID}, function(err, saved) {
-				// 	console.log("SEARCHING FOR: "+ commentID);
-	  	// 			if( err || !saved) { //if the data doesn't already exist in the database,
-	  	// 				//save to DB
-	  	// 				console.log("SAVING: "+ commentID);
-				// 		db.submissions.save({
-				// 			"liveVideoID": liveID,
-				// 			"commentID":commentID,
-				// 			"commentMessage": commentMessage,
-				// 			"culpritName" : culpritName,
-				// 			"culpritID": culpritID
-				// 		}, function(err, saved) {
-	  	// 				if( err || !saved ) console.log("Not saved");
-	  	// 				else console.log("New Comment: " + commentID + " is saved");
-				// 		});
-	  	// 			}
-	  	// 			// else saved.forEach( function(record) {
-	   //  		// 		console.log(record);
-	 		// 		 // } );
-				// });
-
 				
 			}
 		  });
@@ -175,12 +154,13 @@ function getLiveComments(url){
 
 app.get('/extractcomments', function(req, res) {
 
-  db.submissions.find({}, function(err, saved) {
+
+  db.submissions.distinct("liveVideoID", function(err, saved) {
     if (err || !saved) {
     	console.log("No results");
     }
     else {
-      //console.log(saved);
+      console.log(saved);
       res.render('display2.ejs', {thedata:saved});
     }
   });
