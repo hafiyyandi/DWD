@@ -12,7 +12,7 @@
 
   </head>
   <body>
-
+    <%= JSON.stringify(thedata) %>
     <% for (var i = 0; i < thedata.length; i++) { %>
       <a href="/one?_id=<%= thedata[i]._id %>"><%= thedata[i]._id %> :
     <%= thedata[i].commentMessage %> </a><br />
