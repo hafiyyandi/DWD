@@ -155,13 +155,13 @@ function getLiveComments(url){
 app.get('/extractcomments', function(req, res) {
 
 
-  db.submissions.distinct("liveVideoID", function(err, saved) {
+  db.submissions.find("liveVideoID", function(err, saved) {
     if (err || !saved) {
     	console.log("No results");
     }
     else {
       console.log(saved);
-      res.render('display2.ejs', {thedata:saved});
+      res.render('display3.ejs', {thedata:saved});
     }
   });
 
