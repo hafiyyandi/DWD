@@ -155,18 +155,18 @@ function getLiveComments(url){
 app.get('/extractcomments', function(req, res) {
 
 	db.submissions.distinct(
-   "liveVideoID",
-   {}, // query object
-   (function(err, docs){
-        if(err){
-            return console.log(err);
-        }
-        if(docs){  
-            console.log(docs);
-            res.render('display3.ejs', {thedata:docs});
-        }
-   })
-);
+   		"liveVideoID",
+   		{}, // query object
+   		(function(err, docs){
+        	if(err){
+            	return console.log(err);
+        	}
+        	if(docs){  
+            	console.log(docs);
+            	res.render('display3.ejs', {thedata:docs});
+        	}
+   		})
+	);
 
   // db.submissions.find({}, function(err, saved) {
   //   if (err || !saved) {
@@ -177,6 +177,22 @@ app.get('/extractcomments', function(req, res) {
   //     res.render('display2.ejs', {thedata:saved});
   //   }
   // });
+
+});
+
+app.get('/find', function(req,res){
+	var id = req.query.liveVideoID;
+
+	db.submissions.find({liveVideoID:id}, function(err, saved) {
+    	if (err || !saved) {
+    		console.log("No results");
+    	}
+    	else {
+      	console.log(saved);
+      	//res.render('displaycomments.ejs', {thedata:saved});
+    	}
+  	});
+
 
 });
 
