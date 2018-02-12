@@ -154,7 +154,18 @@ function getLiveComments(url){
 
 app.get('/extractcomments', function(req, res) {
 
-	db.submissions.distinct('liveVideoID', {});
+	db.submissions.distinct(
+   "liveVideoID",
+   {}, // query object
+   (function(err, docs){
+        if(err){
+            return console.log(err);
+        }
+        if(docs){  
+            console.log(docs);
+        }
+   })
+);
 
   // db.submissions.find({}, function(err, saved) {
   //   if (err || !saved) {
