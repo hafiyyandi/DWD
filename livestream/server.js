@@ -154,16 +154,17 @@ function getLiveComments(url){
 
 app.get('/extractcomments', function(req, res) {
 
+	console.log(db.submissions.distinct( "liveVideoID" ));
 
-  db.submissions.find("liveVideoID", function(err, saved) {
-    if (err || !saved) {
-    	console.log("No results");
-    }
-    else {
-      console.log(saved);
-      res.render('display3.ejs', {thedata:saved});
-    }
-  });
+  // db.submissions.find({}, function(err, saved) {
+  //   if (err || !saved) {
+  //   	console.log("No results");
+  //   }
+  //   else {
+  //     //console.log(saved);
+  //     res.render('display2.ejs', {thedata:saved});
+  //   }
+  // });
 
 });
 
