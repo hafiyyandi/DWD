@@ -163,6 +163,7 @@ app.get('/extractcomments', function(req, res) {
         }
         if(docs){  
             console.log(docs);
+            res.render('display3.ejs', {thedata:docs});
         }
    })
 );

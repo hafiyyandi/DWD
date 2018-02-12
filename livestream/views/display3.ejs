@@ -4,6 +4,11 @@
   </head>
   <body>
     <%= JSON.stringify(thedata) %>
+    <% for (var i = 0; i < thedata.length; i++) { %>
+      <a href="/one?liveVideoID=<%= thedata[i] %>"> video :
+    <%= thedata[i]%> </a><br />
+    <!--JSON.stringify(thedata[i]) -->
+    <% } %>
 
   </body>
 </html>
