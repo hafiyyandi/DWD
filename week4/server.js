@@ -97,7 +97,7 @@ app.get('/getlivestream', function (req, res) {
 			//getCommentListURL = "https://graph.facebook.com/v2.12/" + liveID + "/comments?access_token=" + token;
 			//getLiveComments(getCommentListURL);
 
-			getReactionListURL = "https://graph.facebook.com/v2.12/" + liveID + "/reactions?access_token=" + token;
+			getReactionListURL = "https://graph.facebook.com/v2.12/" + liveID + "/reactions&summary=viewer_reaction?access_token=" + token;
 			res.redirect(getReactionListURL);
 		}
 		
