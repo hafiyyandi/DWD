@@ -23,6 +23,7 @@ var count = 1;
 var vidList;
 var liveID;
 var getCommentListURL; //the URL called to get comments
+var getReactionListURL; //the URL called to get comments
 
 var db = mongojs(config.mlabstring, ["submissions"]);
 
