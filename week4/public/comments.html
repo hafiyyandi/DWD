@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $.ajax({
+          url: "/extractcomments",
+          dataType: 'json',
+          success: function(data) {
+            console.log(data);
+          },
+          error: function() {
+            alert("error");
+          }
+        });        
+      });
+  </script>
+    <title>Comments</title>
+  </head>
+  <body>
+  </body>
+</html>

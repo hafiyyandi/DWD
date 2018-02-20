@@ -165,8 +165,9 @@ app.get('/extractcomments', function(req, res) {
             	return console.log(err);
         	}
         	if(docs){  
-            	console.log(docs);
-            	res.render('display3.ejs', {thedata:docs});
+            	//console.log(docs);
+            	//res.render('display3.ejs', {thedata:docs});
+            	res.send(docs);
         	}
    		})
 	);
