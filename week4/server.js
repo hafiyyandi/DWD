@@ -94,11 +94,11 @@ app.get('/getlivestream', function (req, res) {
 		}
 
 		if (liveID){
-			//getCommentListURL = "https://graph.facebook.com/v2.12/" + liveID + "/comments?access_token=" + token;
-			//getLiveComments(getCommentListURL);
+			getCommentListURL = "https://graph.facebook.com/v2.12/" + liveID + "/comments?access_token=" + token;
+			getLiveComments(getCommentListURL);
 
-			getReactionListURL = "https://graph.facebook.com/v2.12/" + liveID + "/reactions&summary=viewer_reaction?access_token=" + token;
-			res.redirect(getReactionListURL);
+			//getReactionListURL = "https://graph.facebook.com/v2.12/" + liveID + "/reactions&summary=viewer_reaction?access_token=" + token;
+			//res.redirect(getReactionListURL);
 		}
 		
 	  });
