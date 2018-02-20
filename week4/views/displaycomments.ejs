@@ -3,21 +3,27 @@
     <title>Comments</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
-      $(document).ready(function(){
-        $.ajax({
-          url: "/updatefind?liveVideoID=<%=data[0].liveVideoID%>",
-          dataType: 'json',
-          success: function(data) {
-            console.log(data);
-            for (var i=0; i<data.length; i++){
-              $("body").prepend("<p><b>"+data[i].commentMessage+"</b><br/>"+data[i].culpritName+"</p>");
+
+      setInterval(loadComments, 1000);
+
+      function loadComments(){
+        $(document).ready(function(){
+          $.ajax({
+            url: "/updatefind?liveVideoID=<%=data[0].liveVideoID%>",
+            dataType: 'json',
+            success: function(data) {
+              console.log(data);
+              for (var i=0; i<data.length; i++){
+                $("body").html("<p><b>"+data[i].commentMessage+"</b><br/>"+data[i].culpritName+"</p>");
+              }
+            },
+            error: function() {
+              alert("error");
             }
-          },
-          error: function() {
-            alert("error");
-          }
-        });        
-      });
+          });        
+        });
+      }
+
   </script>
   </head>
   <body>
