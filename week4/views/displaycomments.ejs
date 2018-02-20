@@ -19,9 +19,10 @@
                 //console.log("index: "+i);
                 var isAlreadySaved = false;
                 var currentCommentID = data[i]._id;
+                //console.log(i+" | "+data[i]._id);
 
                 if(loadedCommentID){
-                  for (var j=0; j=loadedCommentID.length; j++){
+                  for (var j=0; j<loadedCommentID.length; j++){
                     if (loadedCommentID[j] == currentCommentID){
                       isAlreadySaved = true;
                       break;
