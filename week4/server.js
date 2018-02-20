@@ -193,12 +193,25 @@ app.get('/find', function(req,res){
     	}
     	else {
       		//console.log(saved);
-      		//res.render('displaycomments.ejs', {thedata:saved});
+      		res.render('displaycomments.ejs', {data:saved});
+      		//res.send(saved);
+    	}
+  	});
+});
+
+app.get('/updatefind', function(req,res){
+	var id = req.query.liveVideoID;
+
+	db.submissions.find({liveVideoID:id}, function(err, saved) {
+    	if (err || !saved) {
+    		console.log("No results");
+    	}
+    	else {
+      		//console.log(saved);
+      		//res.render('displaycomments.ejs', {data:saved});
       		res.send(saved);
     	}
   	});
-
-
 });
 
 

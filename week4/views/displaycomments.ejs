@@ -1,16 +1,26 @@
 <html>
   <head>
     <title>Comments</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $.ajax({
+          url: "/updatefind?liveVideoID=<%=data[0].liveVideoID%>",
+          dataType: 'json',
+          success: function(data) {
+            console.log(data);
+            for (var i=(data.length-1); i>=0; i--){
+              $("body").append("<p><b>"+data[i].commentMessage+"</b><br/>"+data[i].culpritName+"</p>");
+            }
+          },
+          error: function() {
+            alert("error");
+          }
+        });        
+      });
+  </script>
   </head>
   <body>
-    <h1> Video : <%=thedata[0].liveVideoID%> </h1>
-    <% for (var i = 0; i < thedata.length; i++) { %>
-    <p>
-      <b><%= thedata[i].commentMessage%></b><br/>
-      by: <%= thedata[i].culpritName%>
-    </p>
-    <!--JSON.stringify(thedata[i]) -->
-    <% } %>
 
   </body>
 </html>
