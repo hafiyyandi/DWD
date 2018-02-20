@@ -192,8 +192,9 @@ app.get('/find', function(req,res){
     		console.log("No results");
     	}
     	else {
-      	console.log(saved);
-      	res.render('displaycomments.ejs', {thedata:saved});
+      		//console.log(saved);
+      		//res.render('displaycomments.ejs', {thedata:saved});
+      		res.send(saved);
     	}
   	});
 
