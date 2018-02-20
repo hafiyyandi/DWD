@@ -8,6 +8,9 @@
           dataType: 'json',
           success: function(data) {
             console.log(data);
+            for (var i=(data.length-1); i>=0; i--){
+              $("body").append("<p><b>"+data[i].commentMessage+"</b><br/>"+data[i].culpritName+"</p>");
+            }
           },
           error: function() {
             alert("error");
