@@ -20,12 +20,14 @@ app.set('view engine', 'ejs');
 
 //PROGRAMS & FUNCTIONS
 var count = 1;
+var reactionCount = 1;
 var vidList;
 var liveID;
 var getCommentListURL; //the URL called to get comments
 var getReactionListURL; //the URL called to get comments
 
 var db = mongojs(config.mlabstring, ["submissions"]);
+//var db2 = mongojs(config.mlabstring, ["reactions"]);
 
 //For public directory files
 app.use(express.static('public'));
@@ -97,7 +99,8 @@ app.get('/getlivestream', function (req, res) {
 			getCommentListURL = "https://graph.facebook.com/v2.12/" + liveID + "/comments?access_token=" + token;
 			getLiveComments(getCommentListURL);
 
-			//getReactionListURL = "https://graph.facebook.com/v2.12/" + liveID + "/reactions&summary=viewer_reaction?access_token=" + token;
+			//getReactionListURL = "https://graph.facebook.com/v2.12/" + liveID + "/reactions?access_token=" + token;
+			//getLiveReactions(getReactionListURL);
 			//res.redirect(getReactionListURL);
 		}
 		
@@ -150,6 +153,50 @@ function getLiveComments(url){
 		});
 
 		count++;
+
+	},5000);
+
+}
+
+function getLiveReactions(url){
+	setInterval(function(){
+		console.log("getting live reactions... iteration "+ reactionCount);
+		https.get(url, (resp) => {
+		  let data = '';
+
+		  // A chunk of data has been recieved.
+		  resp.on('data', (chunk) => {
+		    data += chunk;
+		  });
+
+		  // The whole response has been received. Print out the result.
+		  resp.on('end', () => {
+			var reactionResponse= JSON.parse(data);
+			for (var i=0; i<reactionResponse.data.length; i++){
+				
+				var culpritID = reactionResponse.data[i].id;
+				var culpritName = reactionResponse.data[i].name;
+				var reactionType = reactionResponse.data[i].type;
+
+				db.collection("reactions").save({
+					"_id":culpritID,
+					"liveVideoID": liveID,
+					"reactionType": reactionType,
+					"culpritName" : culpritName,
+				}, function(err, saved) {
+					if( err || !saved ) console.log("Not saved");
+					else console.log("New reaction is saved");
+				});
+
+				
+			}
+		  });
+
+		}).on("error", (err) => {
+		  console.log("Error: " + err.message);
+		});
+
+		reactionCount++;
 
 	},5000);
 
