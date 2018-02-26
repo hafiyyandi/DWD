@@ -154,7 +154,7 @@ function getLiveComments(url){
 
 		count++;
 
-	},5000);
+	},500);
 
 }
 
