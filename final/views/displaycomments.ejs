@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>Comments</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+      var loadedCommentID = [];
+
+      setInterval(loadComments, 1000);
+
+      function loadComments(){
+        $(document).ready(function(){
+          $.ajax({
+            url: "/updatefind?liveVideoID=<%=data[0].liveVideoID%>",
+            dataType: 'json',
+            success: function(data) {
+              console.log(data);
+              for (var i=0; i<data.length; i++){
+                //console.log("index: "+i);
+                var isAlreadySaved = false;
+                var currentCommentID = data[i]._id;
+                //console.log(i+" | "+data[i]._id);
+
+                if(loadedCommentID){
+                  for (var j=0; j<loadedCommentID.length; j++){
+                    if (loadedCommentID[j] == currentCommentID){
+                      isAlreadySaved = true;
+                      break;
+                    }
+                  }
+                }
+
+                if(!isAlreadySaved){
+                  loadedCommentID.push(currentCommentID);
+                  $("body").prepend("<p><b>"+data[i].commentMessage+"</b><br/>"+data[i].culpritName+"</p>");
+                }
+              }
+            },
+            error: function() {
+              alert("error");
+            }
+          });        
+        });
+      }
+
+  </script>
+  </head>
+  <body>
+
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $.ajax({
+          url: "/extractcomments",
+          dataType: 'json',
+          success: function(data) {
+            console.log(data);
+            for (var i=(data.length-1); i>=0; i--){
+              $("body").append("<p> video ID: <a href=/find?liveVideoID="+data[i]+">"+data[i]+"</a></p>");
+            }
+          },
+          error: function() {
+            alert("error");
+          }
+        });        
+      });
+  </script>
+    <title>Video List</title>
+  </head>
+  <body>
+    <h1>LIVE VIDEO LIST</h1>
+  </body>
+</html>
