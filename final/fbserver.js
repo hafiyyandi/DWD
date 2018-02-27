@@ -9,7 +9,7 @@ var fb_secret = 'f9dcea4f26de12de01a9c6621fdf5cfb';
 
 // All of the permissions that you want access to:
 // https://developers.facebook.com/docs/facebook-login/permissions
-var fb_scope = 'public_profile,email,user_videos,user_posts';
+var fb_scope = 'user_likes';
 
 // More OAuth nonsense
 // Don't forget to change "localhost" to your server
