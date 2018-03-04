@@ -30,6 +30,9 @@ app.listen(80, function () {
   console.log('Server listening on port 80!');
 });
 
+//For public directory files
+app.use(express.static('public'));
+
 app.get('/', function (req, res) {
 	res.redirect('/index.html');
 });
