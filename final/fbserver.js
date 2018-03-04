@@ -71,7 +71,8 @@ app.get('/loggedin', function (req, res) {
 		graph.get('/me/live_videos', function(err, liveVids) { 
 			console.log(liveVids);
 			//res.send(liveVids);
-			res.render('vidlist.ejs', {data:liveVids});
+			//res.render('vidlist.ejs', {data:liveVids});
+			res.render('vidlist.ejs', liveVids)
 		});
 		
 	});	

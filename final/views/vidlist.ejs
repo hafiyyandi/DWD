@@ -7,7 +7,7 @@
 	<div align="center" style="margin-top:100px; font-family:Helvetica;">
     <h1>Your Livestream List</h1>
     <h3>LIVE</h3>
-    <%= data[0] %>
+    <%= liveVids %>
     <% for (var i = 0; i < data.length; i++) { %>
         <% if (data[i].status == 'LIVE') { %>
           <a href="/find?liveVideoID=<%= data[i].id %>"> video :
