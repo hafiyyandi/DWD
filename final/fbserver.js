@@ -70,8 +70,8 @@ app.get('/loggedin', function (req, res) {
 		/** CHANGE THIS PART!!**/
 		graph.get('/me/live_videos', function(err, liveVids) { 
 			console.log(liveVids);
-			res.send(liveVids);
-			//res.render('tracking.ejs', liveVids);
+			//res.send(liveVids);
+			res.render('vidlist.ejs', {data:liveVids});
 		});
 		
 	});	
