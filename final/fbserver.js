@@ -61,7 +61,7 @@ app.get('/loggedin', function (req, res) {
 		// Do something like get all of the user's likes.  
 //You can use any of the "Graph API" calls as long as you have permission: https://developers.facebook.com/docs/graph-api/reference/
 		/** CHANGE THIS PART!!**/
-		graph.get('/me/live-videos', function(err, likesRes) { 
+		graph.get('/me/live_videos', function(err, likesRes) { 
 			console.log(likesRes);
 			res.send(likesRes);
 		});
