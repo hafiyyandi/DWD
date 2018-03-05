@@ -157,12 +157,11 @@ function getLiveComments(url){
 	var commentInterval = setInterval(function(){
 		graph.setAccessToken(accessToken);
 		graph.get(url, function(err, resp) { 
-			var commentResponse = JSON.parse(resp);
-			for (var i=0; i<commentResponse.data.length; i++){
-				var commentID = commentResponse.data[i].id;
-				var commentMessage = commentResponse.data[i].message;
-				var culpritName = commentResponse.data[i].from.name;
-				var culpritID = commentResponse.data[i].from.id;
+			for (var i=0; i<resp.data.length; i++){
+				var commentID = resp.data[i].id;
+				var commentMessage = resp.data[i].message;
+				var culpritName = resp.data[i].from.name;
+				var culpritID = resp.data[i].from.id;
 			}
 
 			db.submissions.save({
