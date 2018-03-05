@@ -124,7 +124,8 @@ app.get('/find', function(req,res){
       			//res.send(saved);
       		} else {
       			//res.status(404).send('Sorry, the comments have not been recorded!');
-      			res.render('displaycomments.ejs', {data: [{liveVideoID:0}]});
+      			//res.render('displaycomments.ejs', {data: [{liveVideoID:0}]});
+      			res.redirect('/notfound.html')
       		}
     	}
   	});
