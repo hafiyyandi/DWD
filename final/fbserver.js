@@ -71,25 +71,25 @@ app.get('/loggedin', function (req, res) {
 //You can use any of the "Graph API" calls as long as you have permission: https://developers.facebook.com/docs/graph-api/reference/
 		/** CHANGE THIS PART!!**/
 		graph.get('/me/live_videos', function(err, resp) { 
-			// console.log(liveVids);
-			// //res.send(liveVids);
-			// if (liveVids){
-			// 	res.render('vidlist.ejs', {data:liveVids});
-			// }
+			console.log(liveVids);
+			//res.send(liveVids);
+			if (liveVids){
+				res.render('vidlist.ejs', {data:liveVids});
+			}
 			
-			let data ='';
+	// 		let data ='';
 			
-			// A chunk of data has been recieved.
-	  		resp.on('data', (chunk) => {
-	    		data += chunk;
-	  		});
+	// 		// A chunk of data has been recieved.
+	//   		resp.on('data', (chunk) => {
+	//     		data += chunk;
+	//   		});
 
-			// The whole response has been received. Print out the result.
-			resp.on('end', () => {
-				//console.log(JSON.parse(data).explanation);
-				vidList = JSON.parse(data);
-				console.log(vidList);
-			});
+	// 		// The whole response has been received. Print out the result.
+	// 		resp.on('end', () => {
+	// 			//console.log(JSON.parse(data).explanation);
+	// 			vidList = JSON.parse(data);
+	// 			console.log(vidList);
+	// 		});
 		});
 		
 	});	
