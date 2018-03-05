@@ -17,7 +17,7 @@
     <h3>LIVE</h3>
     <% for (var i = 0; i < liveVids.data.length; i++) { %>
         <% if (liveVids.data[i].status == 'LIVE') { %>
-          START TRACKING: <a href="/track?liveVideoID=<%= liveVids.data[i].id %>"> video :
+          start tracking video: <a href="/track?liveVideoID=<%= liveVids.data[i].id %>">
           <%= liveVids.data[i].id%> </a><br />
         <% } %>
     <% } %>

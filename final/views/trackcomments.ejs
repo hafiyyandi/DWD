@@ -48,7 +48,7 @@
               }
             },
             error: function() {
-              alert("error");
+              alert("tracking has stopped!");
             }
           });        
         });
@@ -60,5 +60,8 @@
     <h1 style="color:blue">Tracking Has Started!</h1>
     <div id="comments">
     </div>
+    <form id="StopForm" method="GET" action="/stop">
+      <input class = "btn" type="submit" name="submitbutton" value="stop tracking" />
+    </form>
   </body>
 </html>

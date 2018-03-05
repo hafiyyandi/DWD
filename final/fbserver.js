@@ -27,6 +27,7 @@ var express = require('express');
 var app = express();
 
 var count = 1;
+var commentInterval;
 
 app.listen(80, function () {
   console.log('Server listening on port 80!');
@@ -172,7 +173,7 @@ app.get('/track', function (req, res) {
 });
 
 function getLiveComments(url, id){
-	var commentInterval = setInterval(function(){
+	commentInterval = setInterval(function(){
 		graph.setAccessToken(accessToken);
 		graph.get(url, function(err, resp) { 
 			//console.log(resp.data[0].message);
@@ -199,3 +200,7 @@ function getLiveComments(url, id){
 	},500);
 
 }
+
+app.get('/stop', function(req,res){
+	clearInterval(commentInterval);
+});
