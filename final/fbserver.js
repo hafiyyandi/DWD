@@ -76,12 +76,10 @@ app.get('/loggedin', function (req, res) {
 		// Do something like get all of the user's likes.  
 //You can use any of the "Graph API" calls as long as you have permission: https://developers.facebook.com/docs/graph-api/reference/
 		/** CHANGE THIS PART!!**/
-		graph
-		.setOptions(options)
-		.get('/me/live_videos', function(err, liveVids) { 
+		graph.get('/me/live_videos', function(err, liveVids) { 
 			//console.log(liveVids);
 			var vidIDs = [];
-			for (var i=0; i<liveVids.length; i++){
+			for (var i=0; i<10; i++){
 				console.log("hey");
 				var current_id = liveVids[i].id;
 				var current_status = liveVids[i].status;
