@@ -91,22 +91,20 @@ app.get('/loggedin', function (req, res) {
 //You can use any of the "Graph API" calls as long as you have permission: https://developers.facebook.com/docs/graph-api/reference/
 		/** CHANGE THIS PART!!**/
 		graph.get('/me/live_videos', function(err, liveVids) { 
-			//console.log(liveVids);
-			// var vidIDs = [];
-			for (var i=0; i<liveVids.data.length; i++){
-				if (liveVids.data[i].status == 'LIVE'){
-					var id = liveVids.data[i].id;
-					var url = id + '/comments';
-					graph.get(url, function (err, resp){
-						console.log('video: ' +id);
-						console.log(resp);
-					});
-					break;
-				}
-			}
-			//console.log(vidIDs);
+
+			// for (var i=0; i<liveVids.data.length; i++){
+			// 	if (liveVids.data[i].status == 'LIVE'){
+			// 		var id = liveVids.data[i].id;
+			// 		var url = id + '/comments';
+			// 		graph.get(url, function (err, resp){
+			// 			console.log('video: ' +id);
+			// 			console.log(resp);
+			// 		});
+			// 		break;
+			// 	}
+			// }
 			
-			//res.render('vidlist.ejs', {liveVids:liveVids});
+			res.render('vidlist.ejs', {liveVids:liveVids});
 			
 		});
 		
@@ -152,9 +150,9 @@ app.get('/updatefind', function(req,res){
 
 app.get('/track', function (req, res) {
 	var id = req.query.liveVideoID;
-	var getURL = '/me/live_videos/'+id;
+	var getURL = id+'/comments';
 
-	//graph.setAccessToken(accessToken);
+	graph.setAccessToken(accessToken);
 	graph.get(getURL, function(err, resp) { 
 		console.log(resp);
 		
