@@ -150,7 +150,25 @@ app.get('/track', function (req, res) {
 	var id = req.query.liveVideoID;
 	var getURL = id+'/comments';
 	getLiveComments(getURL, id);
-	res.send('Tracking!')
+	
+	db.submissions.find({liveVideoID:id}, function(err, saved) {
+    	if (err || !saved) {
+    		console.log("No results");
+    	}
+    	else {
+
+      		console.log(saved);
+      		if (saved != ""){
+      			//console.log("HELLOOOO");
+      			res.render('trackcomments.ejs', {data:saved});
+      			//res.send(saved);
+      		} else {
+      			//res.status(404).send('Sorry, the comments have not been recorded!');
+      			//res.render('displaycomments.ejs', {data: [{liveVideoID:0}]});
+      			res.redirect('/notfound.html')
+      		}
+    	}
+  	});
 });
 
 function getLiveComments(url, id){

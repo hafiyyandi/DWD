@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <title>Comments</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+      .main {
+        margin-top: 30px;
+        font-family: 'Helvetica';
+        text-align: center;
+      }
+    </style>
+    <script type="text/javascript">
+
+      var loadedCommentID = [];
+
+      setInterval(loadComments, 800);
+      loadComments();
+
+      function loadComments(){
+        // console.log(data);
+        // console.log(<%data%>);
+        // console.log(<%=data[0]%>);
+        $(document).ready(function(){
+          $.ajax({
+            url: "/updatefind?liveVideoID=<%=data[0].liveVideoID%>",
+            dataType: 'json',
+            success: function(data) {
+              //console.log(data);
+              for (var i=0; i<data.length; i++){
+                //console.log("index: "+i);
+                var isAlreadySaved = false;
+                var currentCommentID = data[i]._id;
+                //console.log(i+" | "+data[i]._id);
+
+                if(loadedCommentID){
+                  for (var j=0; j<loadedCommentID.length; j++){
+                    if (loadedCommentID[j] == currentCommentID){
+                      isAlreadySaved = true;
+                      break;
+                    }
+                  }
+                }
+
+                if(!isAlreadySaved){
+                  loadedCommentID.push(currentCommentID);
+                  $("#comments").prepend("<p><b>"+data[i].commentMessage+"</b><br/>"+data[i].culpritName+"</p>");
+                }
+              }
+            },
+            error: function() {
+              alert("error");
+            }
+          });        
+        });
+      }
+
+  </script>
+  </head>
+  <body class="main">
+    <h1 style="color:blue">Tracking Has Started!</h1>
+    <div id="comments">
+    </div>
+  </body>
+</html>
