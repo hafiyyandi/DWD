@@ -149,7 +149,7 @@ app.get('/updatefind', function(req,res){
 
 app.get('/track', function (req, res) {
 	var id = req.query.liveVideoID;
-	var getURL = id+'/comments?order=reverse_chronological';
+	var getURL = id+'/comments?order=reverse_chronological&limit=500';
 	getLiveComments(getURL, id);
 	
 	db.submissions.find({liveVideoID:id}, function(err, saved) {
@@ -178,6 +178,7 @@ function getLiveComments(url, id){
 		graph.get(url, function(err, resp) { 
 			//console.log(resp.data[0].message);
 			console.log(resp);
+
 			// for (var i=0; i<resp.data.length; i++){
 			// 	var commentID = resp.data[i].id;
 			// 	var commentMessage = resp.data[i].message;
