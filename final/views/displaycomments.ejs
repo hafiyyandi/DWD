@@ -8,14 +8,16 @@
 
       //setInterval(loadComments, 1000);
       loadComments();
-      
+
       function loadComments(){
+        console.log(data);
+        console.log(<%data%>);
         $(document).ready(function(){
           $.ajax({
             url: "/updatefind?liveVideoID=<%=data[0].liveVideoID%>",
             dataType: 'json',
             success: function(data) {
-              console.log(data);
+              //console.log(data);
               for (var i=0; i<data.length; i++){
                 //console.log("index: "+i);
                 var isAlreadySaved = false;
