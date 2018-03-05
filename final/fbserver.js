@@ -45,6 +45,12 @@ app.get('/login', function (req, res) {
 	res.redirect(authUrl);
 });
 
+var options = {
+    timeout:  1000
+  , pool:     { maxSockets:  Infinity }
+  , headers:  { connection:  "keep-alive" }
+};
+
 // FB redirected here after successful login
 app.get('/loggedin', function (req, res) {
 	// Access Code from Facebook
@@ -63,7 +69,6 @@ app.get('/loggedin', function (req, res) {
 		
 		// Got the access token			
 		console.log("Access Token: " + facebookRes.access_token);
-		console.log(facebookRes);
 		graph.setAccessToken(facebookRes.access_token);
 
 		// At this point it probably makes more sense to set the access token into a user session or the like so that the user doesn't have to authenticate every time and that we keep a different one for each user.
@@ -71,7 +76,9 @@ app.get('/loggedin', function (req, res) {
 		// Do something like get all of the user's likes.  
 //You can use any of the "Graph API" calls as long as you have permission: https://developers.facebook.com/docs/graph-api/reference/
 		/** CHANGE THIS PART!!**/
-		graph.get('/me/live_videos', function(err, liveVids) { 
+		graph
+		.setOptions(options)
+		.get('/me/live_videos', function(err, liveVids) { 
 			console.log(liveVids);
 			var vidIDs = [];
 			// for (var i=0; i<liveVids.length; i++){
