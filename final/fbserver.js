@@ -110,9 +110,24 @@ app.get('/find', function(req,res){
     		console.log("No results");
     	}
     	else {
-      		//console.log(saved);
+      		console.log(saved);
       		res.render('displaycomments.ejs', {data:saved});
       		//res.send(saved);
+    	}
+  	});
+});
+
+app.get('/updatefind', function(req,res){
+	var id = req.query.liveVideoID;
+
+	db.submissions.find({liveVideoID:id}, function(err, saved) {
+    	if (err || !saved) {
+    		console.log("No results");
+    	}
+    	else {
+      		//console.log(saved);
+      		//res.render('displaycomments.ejs', {data:saved});
+      		res.send(saved);
     	}
   	});
 });
