@@ -197,7 +197,7 @@ function getLiveComments(url, id){
 			
 		});
 		count++;
-	},500);
+	},2000);
 
 }
 
