@@ -79,16 +79,16 @@ app.get('/loggedin', function (req, res) {
 		graph
 		.setOptions(options)
 		.get('/me/live_videos', function(err, liveVids) { 
-			console.log(liveVids);
+			//console.log(liveVids);
 			var vidIDs = [];
-			// for (var i=0; i<liveVids.length; i++){
-			// 	console.log("hey");
-			// 	var current_id = liveVids[i].id;
-			// 	var current_status = liveVids[i].status;
-			// 	vidIDs.push({id:current_id, status:current_status});
-			// }
-			//console.log(vidIDs);
-			res.send(facebookRes);
+			for (var i=0; i<liveVids.length; i++){
+				console.log("hey");
+				var current_id = liveVids[i].id;
+				var current_status = liveVids[i].status;
+				vidIDs.push({id:current_id, status:current_status});
+			}
+			console.log(vidIDs);
+			//res.send(facebookRes);
 			//res.render('vidlist.ejs', {data:liveVids});
 			
 		});
