@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Livestream List</title> 
+	<link rel="stylesheet" href="styles.css">
+  <title>Livestream List</title> 
 </head>
 <body>
-	<div align="center" style="margin-top:30px; font-family:Helvetica;">
+	<div class = "main">
     <h1>Your Livestream List</h1>
     <h3>LIVE</h3>
     <% for (var i = 0; i < liveVids.data.length; i++) { %>
         <% if (liveVids.data[i].status == 'LIVE') { %>
-          <a href="/track?liveVideoID=<%= liveVids.data[i].id %>"> video :
+          START TRACKING: <a href="/track?liveVideoID=<%= liveVids.data[i].id %>"> video :
           <%= liveVids.data[i].id%> </a><br />
         <% } %>
     <% } %>

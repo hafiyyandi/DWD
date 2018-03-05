@@ -151,13 +151,14 @@ app.get('/track', function (req, res) {
 	var id = req.query.liveVideoID;
 	var getURL = id+'/comments';
 	getLiveComments(getURL, id);
+	res.send('Tracking!')
 });
 
 function getLiveComments(url, id){
 	var commentInterval = setInterval(function(){
 		graph.setAccessToken(accessToken);
 		graph.get(url, function(err, resp) { 
-			console.log(resp.data[0].message);
+			//console.log(resp.data[0].message);
 			for (var i=0; i<resp.data.length; i++){
 				var commentID = resp.data[i].id;
 				var commentMessage = resp.data[i].message;
@@ -173,7 +174,7 @@ function getLiveComments(url, id){
 				"culpritID": culpritID
 			}, function(err, saved) {
 				if( err || !saved ) console.log("Not saved");
-				else console.log("Comment is saved!");
+				else console.log("comment saved...iteration: "+count);
 			});
 			
 		});
