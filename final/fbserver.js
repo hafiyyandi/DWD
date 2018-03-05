@@ -28,8 +28,7 @@ var authUrl = graph.getOauthUrl({
 var express = require('express');
 var app = express();
 
-//Popup
-//var popup = require('popups');
+var count = 1;
 
 app.listen(80, function () {
   console.log('Server listening on port 80!');
@@ -151,11 +150,34 @@ app.get('/updatefind', function(req,res){
 app.get('/track', function (req, res) {
 	var id = req.query.liveVideoID;
 	var getURL = id+'/comments';
-
-	graph.setAccessToken(accessToken);
-	graph.get(getURL, function(err, resp) { 
-		console.log(resp);
-		
-	});
-		
+	getLiveComments(getURL);
 });
+
+function getLiveComments(url){
+	var commentInterval = setInterval(function(){
+		graph.setAccessToken(accessToken);
+		graph.get(url, function(err, resp) { 
+			var commentResponse = JSON.parse(resp);
+			for (var i=0; i<commentResponse.data.length; i++){
+				var commentID = commentResponse.data[i].id;
+				var commentMessage = commentResponse.data[i].message;
+				var culpritName = commentResponse.data[i].from.name;
+				var culpritID = commentResponse.data[i].from.id;
+			}
+
+			db.submissions.save({
+				"_id":commentID,
+				"liveVideoID": liveID,
+				"commentMessage": commentMessage,
+				"culpritName" : culpritName,
+				"culpritID": culpritID
+			}, function(err, saved) {
+				if( err || !saved ) console.log("Not saved");
+				else console.log("Comment is saved!");
+			});
+			
+		});
+		count++;
+	},500);
+
+}
