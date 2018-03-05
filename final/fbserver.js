@@ -151,7 +151,7 @@ app.get('/track', function (req, res) {
 
 	graph.setAccessToken(accessToken);
 	graph.get(getURL, function(err, resp) { 
-		console.log(resp;
+		console.log(resp);
 		
 	});
 		
