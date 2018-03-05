@@ -178,7 +178,7 @@ function getLiveComments(url, id){
 		graph.setAccessToken(accessToken);
 		graph.get(url, function(err, resp) { 
 			//console.log(resp.data[0].message);
-			//console.log(resp);
+			console.log(resp);
 
 			for (var i=0; i<resp.data.length; i++){
 				var commentID = resp.data[i].id;
