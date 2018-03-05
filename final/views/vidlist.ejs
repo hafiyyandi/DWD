@@ -8,6 +8,7 @@
     <h1>Your Livestream List</h1>
     <h3>LIVE</h3>
     <%= data %>
+    <%JSON.stringify(data)%>
     <% for (var i = 0; i < data.length; i++) { %>
         <% if (data[i].status == 'LIVE') { %>
           <a href="/find?liveVideoID=<%= data[i].id %>"> video :
