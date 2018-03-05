@@ -71,7 +71,7 @@ app.get('/loggedin', function (req, res) {
 //You can use any of the "Graph API" calls as long as you have permission: https://developers.facebook.com/docs/graph-api/reference/
 		/** CHANGE THIS PART!!**/
 		graph.get('/me/live_videos', function(err, liveVids) { 
-			//console.log(liveVids);
+			console.log(liveVids);
 			var vidIDs = [];
 			for (var i=0; i<liveVids.length; i++){
 				var current_id = liveVids[i].id;
