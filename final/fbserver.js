@@ -74,6 +74,7 @@ app.get('/loggedin', function (req, res) {
 			console.log(liveVids);
 			var vidIDs = [];
 			for (var i=0; i<liveVids.length; i++){
+				console.log("hey");
 				var current_id = liveVids[i].id;
 				var current_status = liveVids[i].status;
 				vidIDs.push({id:current_id, status:current_status});
