@@ -110,8 +110,9 @@ app.get('/find', function(req,res){
     		console.log("No results");
     	}
     	else {
+      		console.log("HEY");
       		console.log(saved);
-      		res.render('displaycomments.ejs', {data:saved});
+      		//res.render('displaycomments.ejs', {data:saved});
       		//res.send(saved);
     	}
   	});
