@@ -78,18 +78,33 @@ app.get('/loggedin', function (req, res) {
 		/** CHANGE THIS PART!!**/
 		graph.get('/me/live_videos', function(err, liveVids) { 
 			//console.log(liveVids);
-			var vidIDs = [];
-			for (var i=0; i<liveVids.data.length; i++){
-				console.log("HEY");
-				var current_id = liveVids.data[i].id;
-				var current_status = liveVids.data[i].status;
-				vidIDs.push({id:current_id, status:current_status});
-			}
+			// var vidIDs = [];
+			// for (var i=0; i<liveVids.data.length; i++){
+			// 	console.log("HEY");
+			// 	var current_id = liveVids.data[i].id;
+			// 	var current_status = liveVids.data[i].status;
+			// 	vidIDs.push({id:current_id, status:current_status});
+			// }
 			//console.log(vidIDs);
-			//res.send(facebookRes);
+			
 			res.render('vidlist.ejs', {liveVids:liveVids});
 			
 		});
 		
 	});	
+});
+
+app.get('/find', function(req,res){
+	var id = req.query.liveVideoID;
+
+	db.submissions.find({liveVideoID:id}, function(err, saved) {
+    	if (err || !saved) {
+    		console.log("No results");
+    	}
+    	else {
+      		//console.log(saved);
+      		res.render('displaycomments.ejs', {data:saved});
+      		//res.send(saved);
+    	}
+  	});
 });

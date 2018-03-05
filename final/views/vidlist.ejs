@@ -4,12 +4,12 @@
 	<title>Livestream List</title> 
 </head>
 <body>
-	<div align="center" style="margin-top:100px; font-family:Helvetica;">
+	<div align="center" style="margin-top:30px; font-family:Helvetica;">
     <h1>Your Livestream List</h1>
     <h3>LIVE</h3>
     <% for (var i = 0; i < liveVids.data.length; i++) { %>
         <% if (liveVids.data[i].status == 'LIVE') { %>
-          <a href="/find?liveVideoID=<%= liveVids.data[i].id %>"> video :
+          <a href="/track?liveVideoID=<%= liveVids.data[i].id %>"> video :
           <%= liveVids.data[i].id%> </a><br />
         <% } %>
     <% } %>

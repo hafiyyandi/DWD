@@ -6,8 +6,9 @@
 
       var loadedCommentID = [];
 
-      setInterval(loadComments, 1000);
-
+      //setInterval(loadComments, 1000);
+      loadComments();
+      
       function loadComments(){
         $(document).ready(function(){
           $.ajax({
