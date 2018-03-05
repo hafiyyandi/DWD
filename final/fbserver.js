@@ -1,3 +1,5 @@
+"use strict"
+
 // Facebook API module
 // https://criso.github.io/fbgraph/
 // npm install fbgraph
