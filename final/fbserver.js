@@ -93,15 +93,20 @@ app.get('/loggedin', function (req, res) {
 		graph.get('/me/live_videos', function(err, liveVids) { 
 			//console.log(liveVids);
 			// var vidIDs = [];
-			// for (var i=0; i<liveVids.data.length; i++){
-			// 	console.log("HEY");
-			// 	var current_id = liveVids.data[i].id;
-			// 	var current_status = liveVids.data[i].status;
-			// 	vidIDs.push({id:current_id, status:current_status});
-			// }
+			for (var i=0; i<liveVids.data.length; i++){
+				if (liveVids.data[i].status == 'LIVE'){
+					var id = liveVids.data[i].id;
+					var url = id + '/comments';
+					graph.get(url, function (err, resp){
+						console.log('video: ' +id);
+						console.log(resp);
+					});
+					break;
+				}
+			}
 			//console.log(vidIDs);
 			
-			res.render('vidlist.ejs', {liveVids:liveVids});
+			//res.render('vidlist.ejs', {liveVids:liveVids});
 			
 		});
 		
