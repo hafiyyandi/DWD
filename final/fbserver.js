@@ -188,8 +188,8 @@ function getLiveComments(url, id){
 				var commentMessage = resp.data[i].message;
 				var culpritName = resp.data[i].from.name;
 				var culpritID = resp.data[i].from.id;
-				console.log ("index: "+i);
-				console.log ("comment: "+commentMessage);
+				//console.log ("index: "+i);
+				//console.log ("comment: "+commentMessage);
 
 				db.submissions.save({
 				"_id":commentID,
