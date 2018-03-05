@@ -28,6 +28,9 @@ var authUrl = graph.getOauthUrl({
 var express = require('express');
 var app = express();
 
+//Popup
+var popup = require('popups');
+
 app.listen(80, function () {
   console.log('Server listening on port 80!');
 });
@@ -116,6 +119,10 @@ app.get('/find', function(req,res){
       			console.log("HELLOOOO");
       			res.render('displaycomments.ejs', {data:saved});
       			//res.send(saved);
+      		} else {
+      			popup.alert({
+    				content: 'Hello!'
+				});
       		}
     	}
   	});
