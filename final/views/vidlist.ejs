@@ -7,19 +7,17 @@
 	<div align="center" style="margin-top:100px; font-family:Helvetica;">
     <h1>Your Livestream List</h1>
     <h3>LIVE</h3>
-    <%= data %>
-    <%JSON.stringify(data)%>
-    <% for (var i = 0; i < data.length; i++) { %>
-        <% if (data[i].status == 'LIVE') { %>
-          <a href="/find?liveVideoID=<%= data[i].id %>"> video :
-          <%= data[i].id%> </a><br />
+    <% for (var i = 0; i < liveVids.data.length; i++) { %>
+        <% if (liveVids.data[i].status == 'LIVE') { %>
+          <a href="/find?liveVideoID=<%= liveVids.data[i].id %>"> video :
+          <%= liveVids.data[i].id%> </a><br />
         <% } %>
     <% } %>
     <h3>ARCHIVED</h3>
-    <% for (var i = 0; i < data.length; i++) { %>
-        <% if (data[i].status != 'LIVE') { %>
-          <a href="/find?liveVideoID=<%= data[i].id %>"> video :
-          <%= data[i].id%> </a><br />
+    <% for (var i = 0; i < liveVids.data.length; i++) { %>
+        <% if (liveVids.data[i].status != 'LIVE') { %>
+          <a href="/find?liveVideoID=<%= liveVids.data[i].id %>"> video :
+          <%= liveVids.data[i].id%> </a><br />
         <% } %>
     <% } %>
 	</div>

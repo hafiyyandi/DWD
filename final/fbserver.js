@@ -85,9 +85,9 @@ app.get('/loggedin', function (req, res) {
 				var current_status = liveVids.data[i].status;
 				vidIDs.push({id:current_id, status:current_status});
 			}
-			console.log(vidIDs);
+			//console.log(vidIDs);
 			//res.send(facebookRes);
-			//res.render('vidlist.ejs', {data:liveVids});
+			res.render('vidlist.ejs', {liveVids:liveVids});
 			
 		});
 		
