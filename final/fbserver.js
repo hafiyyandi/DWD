@@ -150,10 +150,10 @@ app.get('/updatefind', function(req,res){
 app.get('/track', function (req, res) {
 	var id = req.query.liveVideoID;
 	var getURL = id+'/comments';
-	getLiveComments(getURL);
+	getLiveComments(getURL, id);
 });
 
-function getLiveComments(url){
+function getLiveComments(url, id){
 	var commentInterval = setInterval(function(){
 		graph.setAccessToken(accessToken);
 		graph.get(url, function(err, resp) { 
@@ -166,7 +166,7 @@ function getLiveComments(url){
 
 			db.submissions.save({
 				"_id":commentID,
-				"liveVideoID": liveID,
+				"liveVideoID": id,
 				"commentMessage": commentMessage,
 				"culpritName" : culpritName,
 				"culpritID": culpritID
