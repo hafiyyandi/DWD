@@ -112,7 +112,7 @@ app.get('/find', function(req,res){
     	else {
 
       		console.log(saved);
-      		if (saved != undefined){
+      		if (saved != ""){
       			console.log("HELLOOOO");
       			res.render('displaycomments.ejs', {data:saved});
       			//res.send(saved);
