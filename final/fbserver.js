@@ -177,25 +177,25 @@ function getLiveComments(url, id){
 		graph.setAccessToken(accessToken);
 		graph.get(url, function(err, resp) { 
 			//console.log(resp.data[0].message);
-			console.log(resp);
+			//console.log(resp);
 
-			// for (var i=0; i<resp.data.length; i++){
-			// 	var commentID = resp.data[i].id;
-			// 	var commentMessage = resp.data[i].message;
-			// 	var culpritName = resp.data[i].from.name;
-			// 	var culpritID = resp.data[i].from.id;
-			// }
+			for (var i=0; i<resp.data.length; i++){
+				var commentID = resp.data[i].id;
+				var commentMessage = resp.data[i].message;
+				var culpritName = resp.data[i].from.name;
+				var culpritID = resp.data[i].from.id;
+			}
 
-			// db.submissions.save({
-			// 	"_id":commentID,
-			// 	"liveVideoID": id,
-			// 	"commentMessage": commentMessage,
-			// 	"culpritName" : culpritName,
-			// 	"culpritID": culpritID
-			// }, function(err, saved) {
-			// 	if( err || !saved ) console.log("Not saved");
-			// 	else console.log("comment saved...iteration: "+count);
-			// });
+			db.submissions.save({
+				"_id":commentID,
+				"liveVideoID": id,
+				"commentMessage": commentMessage,
+				"culpritName" : culpritName,
+				"culpritID": culpritID
+			}, function(err, saved) {
+				if( err || !saved ) console.log("Not saved");
+				else console.log("comment saved...iteration: "+count);
+			});
 			
 		});
 		count++;
