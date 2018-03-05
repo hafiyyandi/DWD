@@ -40,6 +40,8 @@ var mongojs = require('mongojs');
 var config = require('./config.js');
 var db = mongojs(config.mlabstring, ["submissions"]);
 
+var accessToken;
+
 //Templates
 app.set('view engine', 'ejs');
 
@@ -81,6 +83,7 @@ app.get('/loggedin', function (req, res) {
 		// Got the access token			
 		console.log("Access Token: " + facebookRes.access_token);
 		graph.setAccessToken(facebookRes.access_token);
+		accessToken= facebookRes.access_token;
 
 		// At this point it probably makes more sense to set the access token into a user session or the like so that the user doesn't have to authenticate every time and that we keep a different one for each user.
 
@@ -140,4 +143,16 @@ app.get('/updatefind', function(req,res){
       		res.send(saved);
     	}
   	});
+});
+
+app.get('/track', function (req, res) {
+	var id = req.query.liveVideoID;
+	var getURL = '/me/' + id + '/comments';
+
+	graph.setAccessToken(accessToken);
+	graph.get(getURL, function(err, resp) { 
+		console.log(resp;
+		
+	});
+		
 });
