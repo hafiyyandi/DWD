@@ -147,9 +147,9 @@ app.get('/updatefind', function(req,res){
 
 app.get('/track', function (req, res) {
 	var id = req.query.liveVideoID;
-	var getURL = id + '/comments';
+	var getURL = id + '/comments?access_token='+accessToken;
 
-	graph.setAccessToken(accessToken);
+	//graph.setAccessToken(accessToken);
 	graph.get(getURL, function(err, resp) { 
 		console.log(resp);
 		
