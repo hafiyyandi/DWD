@@ -56,11 +56,11 @@ app.get('/login', function (req, res) {
 	res.redirect(authUrl);
 });
 
-var options = {
-    timeout:  1000
-  , pool:     { maxSockets:  Infinity }
-  , headers:  { connection:  "keep-alive" }
-};
+// var options = {
+//     timeout:  1000
+//   , pool:     { maxSockets:  Infinity }
+//   , headers:  { connection:  "keep-alive" }
+// };
 
 // FB redirected here after successful login
 app.get('/loggedin', function (req, res) {
@@ -149,7 +149,7 @@ app.get('/updatefind', function(req,res){
 
 app.get('/track', function (req, res) {
 	var id = req.query.liveVideoID;
-	var getURL = id+'/comments';
+	var getURL = id+'/comments?order=reverse_chronological';
 	getLiveComments(getURL, id);
 	
 	db.submissions.find({liveVideoID:id}, function(err, saved) {
@@ -177,23 +177,24 @@ function getLiveComments(url, id){
 		graph.setAccessToken(accessToken);
 		graph.get(url, function(err, resp) { 
 			//console.log(resp.data[0].message);
-			for (var i=0; i<resp.data.length; i++){
-				var commentID = resp.data[i].id;
-				var commentMessage = resp.data[i].message;
-				var culpritName = resp.data[i].from.name;
-				var culpritID = resp.data[i].from.id;
-			}
+			console.log(resp);
+			// for (var i=0; i<resp.data.length; i++){
+			// 	var commentID = resp.data[i].id;
+			// 	var commentMessage = resp.data[i].message;
+			// 	var culpritName = resp.data[i].from.name;
+			// 	var culpritID = resp.data[i].from.id;
+			// }
 
-			db.submissions.save({
-				"_id":commentID,
-				"liveVideoID": id,
-				"commentMessage": commentMessage,
-				"culpritName" : culpritName,
-				"culpritID": culpritID
-			}, function(err, saved) {
-				if( err || !saved ) console.log("Not saved");
-				else console.log("comment saved...iteration: "+count);
-			});
+			// db.submissions.save({
+			// 	"_id":commentID,
+			// 	"liveVideoID": id,
+			// 	"commentMessage": commentMessage,
+			// 	"culpritName" : culpritName,
+			// 	"culpritID": culpritID
+			// }, function(err, saved) {
+			// 	if( err || !saved ) console.log("Not saved");
+			// 	else console.log("comment saved...iteration: "+count);
+			// });
 			
 		});
 		count++;
