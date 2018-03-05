@@ -32,6 +32,14 @@ app.listen(80, function () {
   console.log('Server listening on port 80!');
 });
 
+//for MongoDB
+var mongojs = require('mongojs');
+var config = require('./config.js');
+var db = mongojs(config.mlabstring, ["submissions"]);
+
+//Templates
+app.set('view engine', 'ejs');
+
 //For public directory files
 app.use(express.static('public'));
 
