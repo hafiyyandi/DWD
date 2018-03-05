@@ -9,6 +9,22 @@
         font-family: 'Helvetica';
         text-align: center;
       }
+      .btn {
+        -webkit-border-radius: 9;
+        -moz-border-radius: 9;
+        border-radius: 9px;
+        font-family: Arial;
+        color: #ffffff;
+        font-size: 14px;
+        background: #3498db;
+        padding: 15px 25px 15px 25px;
+        text-decoration: none;
+      }
+
+      .btn:hover {
+        background: #3cb0fd;
+        text-decoration: none;
+      }
     </style>
     </style>
   </head>
@@ -16,7 +32,7 @@
     <h1>Welcome</h1>
     <p>Login to Facebook to track &amp; parse your livestream's comments</p>
     <form id="FBLoginForm" method="GET" action="/login">
-      <input type="submit" name="submitbutton" value="LOGIN" />
+      <input class = "btn" type="submit" name="submitbutton" value="LOGIN" />
     </form>
   </body>
 </html>
