@@ -79,10 +79,10 @@ app.get('/loggedin', function (req, res) {
 		graph.get('/me/live_videos', function(err, liveVids) { 
 			//console.log(liveVids);
 			var vidIDs = [];
-			for (var i=0; i<10; i++){
-				console.log("hey");
-				var current_id = liveVids[i].id;
-				var current_status = liveVids[i].status;
+			for (var i=0; i<liveVids.data.length; i++){
+				console.log("HEY");
+				var current_id = liveVids.data[i].id;
+				var current_status = liveVids.data[i].status;
 				vidIDs.push({id:current_id, status:current_status});
 			}
 			console.log(vidIDs);
