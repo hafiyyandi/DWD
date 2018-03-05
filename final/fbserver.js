@@ -63,7 +63,7 @@ app.get('/loggedin', function (req, res) {
 		
 		// Got the access token			
 		console.log("Access Token: " + facebookRes.access_token);
-		res.send(facebookRes);
+		console.log(facebookRes);
 		graph.setAccessToken(facebookRes.access_token);
 
 		// At this point it probably makes more sense to set the access token into a user session or the like so that the user doesn't have to authenticate every time and that we keep a different one for each user.
@@ -81,7 +81,7 @@ app.get('/loggedin', function (req, res) {
 			// 	vidIDs.push({id:current_id, status:current_status});
 			// }
 			//console.log(vidIDs);
-			//res.send(liveVids);
+			res.send(facebookRes);
 			//res.render('vidlist.ejs', {data:liveVids});
 			
 		});
