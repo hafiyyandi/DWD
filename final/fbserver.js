@@ -206,7 +206,7 @@ function getLiveComments(url, id){
 		});
 		count++;
 		console.log("comment saved...iteration: "+count);
-	},2000);
+	},500);
 
 }
 
