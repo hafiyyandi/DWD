@@ -157,7 +157,8 @@ function getLiveComments(url, id){
 	var commentInterval = setInterval(function(){
 		graph.setAccessToken(accessToken);
 		graph.get(url, function(err, resp) { 
-			console.log(resp);
+			var commentResponse= JSON.parse(resp);
+			console.log(commentResponse);
 			// for (var i=0; i<resp.data.length; i++){
 			// 	var commentID = resp.data[i].id;
 			// 	var commentMessage = resp.data[i].message;
