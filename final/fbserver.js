@@ -186,8 +186,8 @@ function getLiveComments(url, id){
 			for (var i=0; i<resp.data.length; i++){
 				var commentID = resp.data[i].id;
 				var commentMessage = resp.data[i].message;
-				var culpritName = resp.data[i].from.name;
-				var culpritID = resp.data[i].from.id;
+				//var culpritName = resp.data[i].from.name;
+				//var culpritID = resp.data[i].from.id;
 				//console.log ("index: "+i);
 				//console.log ("comment: "+commentMessage);
 
@@ -195,8 +195,8 @@ function getLiveComments(url, id){
 				"_id":commentID,
 				"liveVideoID": id,
 				"commentMessage": commentMessage,
-				"culpritName" : culpritName,
-				"culpritID": culpritID
+				//"culpritName" : culpritName,
+				//"culpritID": culpritID
 				}, function(err, saved) {
 					if( err || !saved ) console.log("Not saved");
 					//else console.log("comment saved...iteration: "+count);
